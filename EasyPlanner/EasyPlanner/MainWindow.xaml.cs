@@ -24,7 +24,6 @@ namespace EasyPlanner
         public MainWindow()
         {
             InitializeComponent();
-            Scheduler scheduler = new Scheduler();
         }
 
         private void mainScheduler_Loaded(object s, RoutedEventArgs e)
