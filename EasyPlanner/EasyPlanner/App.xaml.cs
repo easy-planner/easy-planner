@@ -14,8 +14,4 @@ namespace EasyPlanner
     public partial class App : Application
     {
     }
-
-    ///test
-    /// C'est la branche du consult
-    ///testdev
 }
