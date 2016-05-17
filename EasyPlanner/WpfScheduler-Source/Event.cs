@@ -20,6 +20,7 @@ namespace WpfScheduler
         public Event()
         {
             Id = Guid.NewGuid();
+            AllDay = false;
         }
     }
 }
