@@ -22,24 +22,32 @@ namespace EasyPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
+        Scheduler scheduler;
+        bd_easyplannerEntities bdModel;
         public MainWindow()
         {
             InitializeComponent();
-            Scheduler scheduler = new Scheduler();
+            scheduler = new Scheduler();
+            bdModel = new bd_easyplannerEntities();
         }
 
         private void mainScheduler_Loaded(object s, RoutedEventArgs e)
         {
-            bd_easyplannerEntities bdModel = new bd_easyplannerEntities();
             mainScheduler.SelectedDate = new DateTime(2016, 05, 17);
             mainScheduler.StartJourney = new TimeSpan(7, 0, 0);
             mainScheduler.EndJourney = new TimeSpan(19, 0, 0);
             mainScheduler.Loaded += mainScheduler_Loaded;
             mainScheduler.Mode = Mode.Week;
-            foreach(WorkingShift ws in bdModel.WorkingShifts.ToList())
+            updateEvents();
+        }
+
+        private void updateEvents()
+        {
+            foreach (WorkingShift ws in bdModel.WorkingShifts.ToList())
             {
                 Person person = bdModel.People.Find(ws.idPerson);
-                mainScheduler.AddEvent(new Event() {
+                mainScheduler.AddEvent(new Event()
+                {
                     Subject = person.firstName + " " + person.name,
                     Description = ws.description,
                     Color = colorPiker(person),
@@ -76,7 +84,12 @@ namespace EasyPlanner
 
         private Brush colorPiker(Person p)
         {
-            return (Brush) new BrushConverter().ConvertFromString(typeof(System.Windows.Media.Brushes).GetProperties()[p.idPerson%80].Name);
+            return (Brush) new BrushConverter().ConvertFromString(typeof(Brushes).GetProperties()[p.idPerson%(typeof(Brushes).GetProperties().Count())].Name);
+        }
+
+        private void refreshBtn_Click(object sender, RoutedEventArgs e)
+        {
+            updateEvents();
         }
     }
 }
