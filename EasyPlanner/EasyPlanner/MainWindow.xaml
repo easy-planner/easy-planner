@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="800" Width="800"
+        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Name="prevBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Précédent"  VerticalAlignment="Center" Click="prevBtn_Click"></Button>
+            <Button Name="nextBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Suivant"  VerticalAlignment="Center" Click="nextBtn_Click"></Button>
+
+            <Button Name="modeDayBtn" Margin="0 0 10 0" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Jour"  VerticalAlignment="Center" Click="modeDayBtn_Click"></Button>
+            <Button Name="modeWeekBtn" Margin="0 0 10 0" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Semaine"  VerticalAlignment="Center" Click="modeWeekBtn_Click"></Button>
+            <Button Name="modeMonthBtn" Margin="0 0 10 0" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Mois"  VerticalAlignment="Center" Click="modeMonthBtn_Click"></Button>
+        </DockPanel>
+        <my:Scheduler
+            Grid.Row="1"
+            HorizontalAlignment="Stretch" Name="mainScheduler" VerticalAlignment="Stretch" Loaded="mainScheduler_Loaded"/>
     </Grid>
 </Window>

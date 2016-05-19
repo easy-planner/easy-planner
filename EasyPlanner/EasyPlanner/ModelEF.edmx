@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bd_easyplannerModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AbsenceDemand">
+          <Key>
+            <PropertyRef Name="idAbsence" />
+          </Key>
+          <Property Name="idAbsence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start" Type="datetime" Precision="0" />
+          <Property Name="end" Type="datetime" Precision="0" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="25" />
+          <Property Name="idPerson" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AbsencePreference">
+          <Key>
+            <PropertyRef Name="idTimeSlot" />
+          </Key>
+          <Property Name="idTimeSlot" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dayOfWeek" Type="varchar" MaxLength="20" />
+          <Property Name="startHour" Type="time" Precision="0" Nullable="false" />
+          <Property Name="endHour" Type="time" Precision="0" />
+          <Property Name="firstDay" Type="date" />
+          <Property Name="lastDate" Type="date" />
+          <Property Name="idPerson" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="idPerson" />
+          </Key>
+          <Property Name="idPerson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="text" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numberAVS" Type="varchar" MaxLength="25" />
+          <Property Name="occupancyRate" Type="float" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="idRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScheduleSlot">
+          <Key>
+            <PropertyRef Name="idTimeSlot" />
+          </Key>
+          <Property Name="idTimeSlot" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dayOfWeek" Type="varchar" MaxLength="20" />
+          <Property Name="startHour" Type="time" Precision="0" Nullable="false" />
+          <Property Name="endHour" Type="time" Precision="0" />
+          <Property Name="firstDay" Type="date" />
+          <Property Name="lastDay" Type="date" />
+          <Property Name="minAttendency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkingShift">
+          <Key>
+            <PropertyRef Name="idShift" />
+          </Key>
+          <Property Name="idShift" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start" Type="datetime" Precision="0" />
+          <Property Name="end" Type="datetime" Precision="0" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="idPerson" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AbsenceDemand_idPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AbsenceDemand" Type="Self.AbsenceDemand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="AbsenceDemand">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbsencePreference_idPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AbsencePreference" Type="Self.AbsencePreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="AbsencePreference">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_idRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkingShift_idPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="WorkingShift" Type="Self.WorkingShift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="WorkingShift">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bd_easyplannerModelStoreContainer">
+          <EntitySet Name="AbsenceDemand" EntityType="Self.AbsenceDemand" Schema="bd_easyplanner" store:Type="Tables" />
+          <EntitySet Name="AbsencePreference" EntityType="Self.AbsencePreference" Schema="bd_easyplanner" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="bd_easyplanner" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="bd_easyplanner" store:Type="Tables" />
+          <EntitySet Name="ScheduleSlot" EntityType="Self.ScheduleSlot" Schema="bd_easyplanner" store:Type="Tables" />
+          <EntitySet Name="WorkingShift" EntityType="Self.WorkingShift" Schema="bd_easyplanner" store:Type="Tables" />
+          <AssociationSet Name="FK_AbsenceDemand_idPerson" Association="Self.FK_AbsenceDemand_idPerson">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="AbsenceDemand" EntitySet="AbsenceDemand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AbsencePreference_idPerson" Association="Self.FK_AbsencePreference_idPerson">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="AbsencePreference" EntitySet="AbsencePreference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_idRole" Association="Self.FK_Person_idRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkingShift_idPerson" Association="Self.FK_WorkingShift_idPerson">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="WorkingShift" EntitySet="WorkingShift" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bd_easyplannerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AbsenceDemand">
+          <Key>
+            <PropertyRef Name="idAbsence" />
+          </Key>
+          <Property Name="idAbsence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start" Type="DateTime" />
+          <Property Name="end" Type="DateTime" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="idPerson" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_AbsenceDemand_idPerson" FromRole="AbsenceDemand" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="AbsencePreference">
+          <Key>
+            <PropertyRef Name="idTimeSlot" />
+          </Key>
+          <Property Name="idTimeSlot" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dayOfWeek" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startHour" Type="Time" Nullable="false" />
+          <Property Name="endHour" Type="Time" />
+          <Property Name="firstDay" Type="DateTime" />
+          <Property Name="lastDate" Type="DateTime" />
+          <Property Name="idPerson" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_AbsencePreference_idPerson" FromRole="AbsencePreference" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="idPerson" />
+          </Key>
+          <Property Name="idPerson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numberAVS" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="occupancyRate" Type="Single" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="idRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AbsenceDemands" Relationship="Self.FK_AbsenceDemand_idPerson" FromRole="Person" ToRole="AbsenceDemand" />
+          <NavigationProperty Name="AbsencePreferences" Relationship="Self.FK_AbsencePreference_idPerson" FromRole="Person" ToRole="AbsencePreference" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Person_idRole" FromRole="Person" ToRole="Role" />
+          <NavigationProperty Name="WorkingShifts" Relationship="Self.FK_WorkingShift_idPerson" FromRole="Person" ToRole="WorkingShift" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Self.FK_Person_idRole" FromRole="Role" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="ScheduleSlot">
+          <Key>
+            <PropertyRef Name="idTimeSlot" />
+          </Key>
+          <Property Name="idTimeSlot" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dayOfWeek" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startHour" Type="Time" Nullable="false" />
+          <Property Name="endHour" Type="Time" />
+          <Property Name="firstDay" Type="DateTime" />
+          <Property Name="lastDay" Type="DateTime" />
+          <Property Name="minAttendency" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkingShift">
+          <Key>
+            <PropertyRef Name="idShift" />
+          </Key>
+          <Property Name="idShift" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start" Type="DateTime" />
+          <Property Name="end" Type="DateTime" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="idPerson" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_WorkingShift_idPerson" FromRole="WorkingShift" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_AbsenceDemand_idPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AbsenceDemand" Type="Self.AbsenceDemand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="AbsenceDemand">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AbsencePreference_idPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AbsencePreference" Type="Self.AbsencePreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="AbsencePreference">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_idRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkingShift_idPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="WorkingShift" Type="Self.WorkingShift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="idPerson" />
+            </Principal>
+            <Dependent Role="WorkingShift">
+              <PropertyRef Name="idPerson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bd_easyplannerEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AbsenceDemands" EntityType="Self.AbsenceDemand" />
+          <EntitySet Name="AbsencePreferences" EntityType="Self.AbsencePreference" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="ScheduleSlots" EntityType="Self.ScheduleSlot" />
+          <EntitySet Name="WorkingShifts" EntityType="Self.WorkingShift" />
+          <AssociationSet Name="FK_AbsenceDemand_idPerson" Association="Self.FK_AbsenceDemand_idPerson">
+            <End Role="Person" EntitySet="People" />
+            <End Role="AbsenceDemand" EntitySet="AbsenceDemands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AbsencePreference_idPerson" Association="Self.FK_AbsencePreference_idPerson">
+            <End Role="Person" EntitySet="People" />
+            <End Role="AbsencePreference" EntitySet="AbsencePreferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_idRole" Association="Self.FK_Person_idRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkingShift_idPerson" Association="Self.FK_WorkingShift_idPerson">
+            <End Role="Person" EntitySet="People" />
+            <End Role="WorkingShift" EntitySet="WorkingShifts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bd_easyplannerModelStoreContainer" CdmEntityContainer="bd_easyplannerEntities1">
+          <EntitySetMapping Name="AbsenceDemands">
+            <EntityTypeMapping TypeName="bd_easyplannerModel.AbsenceDemand">
+              <MappingFragment StoreEntitySet="AbsenceDemand">
+                <ScalarProperty Name="idAbsence" ColumnName="idAbsence" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AbsencePreferences">
+            <EntityTypeMapping TypeName="bd_easyplannerModel.AbsencePreference">
+              <MappingFragment StoreEntitySet="AbsencePreference">
+                <ScalarProperty Name="idTimeSlot" ColumnName="idTimeSlot" />
+                <ScalarProperty Name="dayOfWeek" ColumnName="dayOfWeek" />
+                <ScalarProperty Name="startHour" ColumnName="startHour" />
+                <ScalarProperty Name="endHour" ColumnName="endHour" />
+                <ScalarProperty Name="firstDay" ColumnName="firstDay" />
+                <ScalarProperty Name="lastDate" ColumnName="lastDate" />
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="bd_easyplannerModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="numberAVS" ColumnName="numberAVS" />
+                <ScalarProperty Name="occupancyRate" ColumnName="occupancyRate" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="bd_easyplannerModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheduleSlots">
+            <EntityTypeMapping TypeName="bd_easyplannerModel.ScheduleSlot">
+              <MappingFragment StoreEntitySet="ScheduleSlot">
+                <ScalarProperty Name="idTimeSlot" ColumnName="idTimeSlot" />
+                <ScalarProperty Name="dayOfWeek" ColumnName="dayOfWeek" />
+                <ScalarProperty Name="startHour" ColumnName="startHour" />
+                <ScalarProperty Name="endHour" ColumnName="endHour" />
+                <ScalarProperty Name="firstDay" ColumnName="firstDay" />
+                <ScalarProperty Name="lastDay" ColumnName="lastDay" />
+                <ScalarProperty Name="minAttendency" ColumnName="minAttendency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkingShifts">
+            <EntityTypeMapping TypeName="bd_easyplannerModel.WorkingShift">
+              <MappingFragment StoreEntitySet="WorkingShift">
+                <ScalarProperty Name="idShift" ColumnName="idShift" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -14,9 +14,4 @@ namespace EasyPlanner
     public partial class App : Application
     {
     }
-
-    ///test
-    
-    ///testdev
-    ///testdemo
 }

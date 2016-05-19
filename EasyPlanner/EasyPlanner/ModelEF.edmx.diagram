@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a14f7e337399497db5e893e63f9cfc70" Name="Diagram1">
+        <EntityTypeShape EntityType="bd_easyplannerModel.AbsenceDemand" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_easyplannerModel.AbsencePreference" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_easyplannerModel.Person" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_easyplannerModel.Role" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_easyplannerModel.ScheduleSlot" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_easyplannerModel.WorkingShift" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="bd_easyplannerModel.FK_AbsenceDemand_idPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_easyplannerModel.FK_AbsencePreference_idPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_easyplannerModel.FK_Person_idRole" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_easyplannerModel.FK_WorkingShift_idPerson" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
