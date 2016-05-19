@@ -19,7 +19,6 @@
             <Button Name="modeDayBtn" Margin="0 0 10 0" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Jour"  VerticalAlignment="Center" Click="modeDayBtn_Click"></Button>
             <Button Name="modeWeekBtn" Margin="0 0 10 0" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Semaine"  VerticalAlignment="Center" Click="modeWeekBtn_Click"></Button>
             <Button Name="modeMonthBtn" Margin="0 0 10 0" HorizontalAlignment="Right" DockPanel.Dock="Right" Content="Mois"  VerticalAlignment="Center" Click="modeMonthBtn_Click"></Button>
-            <Label x:Name="label" Content="Test greg" Height="35" VerticalAlignment="Top" Margin="0,15,0,0" Width="330"/>
         </DockPanel>
         <my:Scheduler
             Grid.Row="1"
