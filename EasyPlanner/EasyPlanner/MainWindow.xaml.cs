@@ -78,5 +78,11 @@ namespace EasyPlanner
         {
             return (Brush) new BrushConverter().ConvertFromString(typeof(System.Windows.Media.Brushes).GetProperties()[p.idPerson%80].Name);
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 f1 = new Window1();
+            f1.Show();
+        }
     }
 }
