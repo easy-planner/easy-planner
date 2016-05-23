@@ -94,7 +94,7 @@ namespace EasyPlanner
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            ManageUser mu = new ManageUser();
+            ManageUser mu = new ManageUser(bdModel);
             mu.Show();
         }
     }
