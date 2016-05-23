@@ -1,0 +1,19 @@
+﻿<Window x:Class="EasyPlanner.ManageUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyPlanner"
+        mc:Ignorable="d"
+        Title="Gestion des utilisateurs" Height="300" Width="300">
+    <Grid>
+        <DataGrid x:Name="dgPeople" HorizontalAlignment="Left" Margin="0,10,0,-25.333" VerticalAlignment="Top" Height="286" Width="283"  AutoGenerateColumns="False"  CanUserAddRows="False" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgrId" Binding="{Binding idPerson}"  Header="Id"  IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrFirstName"  Binding="{Binding firstName}" Header="FirstName" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="LastName" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

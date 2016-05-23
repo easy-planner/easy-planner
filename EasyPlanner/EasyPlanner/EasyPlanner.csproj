@@ -69,6 +69,9 @@
     <Compile Include="AbsencePreference.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="ManageUser.xaml.cs">
+      <DependentUpon>ManageUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModelEF.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +101,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManageUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelEF.Context.cs">
