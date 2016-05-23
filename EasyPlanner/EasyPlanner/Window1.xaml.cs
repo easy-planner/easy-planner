@@ -29,5 +29,15 @@ namespace EasyPlanner
         {
             dgTest.ItemsSource = bd.People.ToList();
         }
+
+        private void cbDayOfWeek_DropDownClosed(object sender, EventArgs e)
+        {
+            MessageBox.Show("Jour de la semaine : " + cbDayOfWeek.Text);
+            var original = bd.ScheduleSlots.SingleOrDefault(b => b.dayOfWeek == "lundi");
+            if (original != null)
+            {
+               // original.dayOfWeek. = DayOfWeek.Saturday.;
+            }
+        }
     }
 }
