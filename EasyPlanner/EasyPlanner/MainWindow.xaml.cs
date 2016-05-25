@@ -57,6 +57,32 @@ namespace EasyPlanner
             }
         }
 
+        private void mnViewUsers(object s, RoutedEventArgs e)
+        {
+            ManageUser viewUsersWindow = new ManageUser();
+            viewUsersWindow.ShowDialog();
+        }
+
+        private void mnAddUser(object s, RoutedEventArgs e)
+        {
+            AddUser addUserWindow = new AddUser();
+            addUserWindow.ShowDialog();
+        }
+
+        private void mnViewPlots(object s, RoutedEventArgs e)
+        {
+            ViewPlotsWindow viewPlotsWindow = new ViewPlotsWindow();
+            viewPlotsWindow.ShowDialog();
+        }
+
+        private void mnAddPlot(object s, RoutedEventArgs e)
+        {
+            AddPlotWindow addPlotWindow = new AddPlotWindow();
+            addPlotWindow.ShowDialog();
+        }
+
+
+
         private void prevBtn_Click(object s, RoutedEventArgs e)
         {
             mainScheduler.PrevPage();
