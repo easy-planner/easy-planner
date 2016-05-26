@@ -15,13 +15,36 @@ using System.Windows.Shapes;
 namespace EasyPlanner
 {
     /// <summary>
-    /// Interaction logic for AddPlotWindow.xaml
+    /// Logique d'interaction pour Window1.xaml
     /// </summary>
     public partial class AddPlotWindow : Window
     {
+        bd_easyplannerEntities bd = new bd_easyplannerEntities();
+        private ScheduleSlot current;
+
         public AddPlotWindow()
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //dgTest.ItemsSource = bd.People.ToList();
+            //dgTest.ItemsSource = bd.ScheduleSlots.ToList();
+        }
+
+        private void btnValider_Click(object sender, RoutedEventArgs e)
+        {
+            current = new ScheduleSlot();
+            current.dayOfWeek = cbDayOfWeek.Text;
+            current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
+            current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
+            current.minAttendency = Int32.Parse(cbAttendency.Text);
+            current.firstDay = dpFirstDay.SelectedDate;
+            current.lastDay = dpLastDay.SelectedDate;
+            bd.ScheduleSlots.Add(current);
+            bd.SaveChanges();
+            this.Close();
+            }
     }
 }

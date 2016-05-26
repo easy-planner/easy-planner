@@ -117,5 +117,17 @@ namespace EasyPlanner
         {
             updateEvents();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            AddPlotWindow apw = new AddPlotWindow();
+            apw.Show();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            ViewPlotsWindow vpw = new ViewPlotsWindow();
+            vpw.Show();
+        }
     }
 }

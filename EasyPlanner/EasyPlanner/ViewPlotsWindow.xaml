@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="ViewPlotsWindow" Height="300" Width="300">
+        Title="Vue des slots" Height="435" Width="764" Loaded="Window_Loaded">
     <Grid>
-        
+        <DataGrid x:Name="dg" HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="705"/>
+
     </Grid>
 </Window>
