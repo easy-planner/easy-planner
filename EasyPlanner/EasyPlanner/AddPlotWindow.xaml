@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="Ajout d'un slot" Height="434.879" Width="396.866" Loaded="Window_Loaded">
+        Title="Ajout d'un slot" Height="434.879" Width="472.866" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="lbl_dayOfWeek" Content="Jour de semaine" HorizontalAlignment="Left" Margin="39,53,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="242,53,0,0" VerticalAlignment="Top" Width="120">
