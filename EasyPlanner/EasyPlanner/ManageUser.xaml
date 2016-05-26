@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="ManageUser" Height="300" Width="300">
-    <Grid>
-        
+        Title="Gestion des utilisateurs" Height="765.667" Width="auto">
+    <Grid Margin="0,44,0.333,0.667">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="135*"/>
+            <RowDefinition Height="38*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="226*"/>
+            <ColumnDefinition Width="67*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="dgPeople" HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto"  AutoGenerateColumns="False"  CanUserAddRows="False" ColumnWidth="*" Grid.ColumnSpan="2" Margin="10,0,-19.667,0" RenderTransformOrigin="0.754,1.712">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgrId" Binding="{Binding idPerson}"  Header="Id"  IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrFirstName"  Binding="{Binding firstName}" Header="FirstName" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="LastName" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrNumberAVS"  Binding="{Binding numberAVS}" Header="Numéro AVS" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrOccupancyRate"  Binding="{Binding occupancyRate}" Header="occupancyRate" IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

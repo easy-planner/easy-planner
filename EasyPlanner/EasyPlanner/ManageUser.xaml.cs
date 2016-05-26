@@ -15,13 +15,17 @@ using System.Windows.Shapes;
 namespace EasyPlanner
 {
     /// <summary>
-    /// Interaction logic for ManageUser.xaml
+    /// Logique d'interaction pour ManageUser.xaml
     /// </summary>
     public partial class ManageUser : Window
     {
+        bd_easyplannerEntities bdModel;
         public ManageUser()
         {
             InitializeComponent();
+            bdModel = new bd_easyplannerEntities();
+            dgPeople.ItemsSource = bdModel.People.ToList();
         }
+
     }
 }
