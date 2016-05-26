@@ -26,6 +26,9 @@ namespace EasyPlanner
             InitializeComponent();
             this.bdModel = bdModel;
             cob_role.ItemsSource = bdModel.Roles.ToList();
+            cob_role.DisplayMemberPath = "roleName";
+            cob_role.SelectedValuePath = "idRole";
+            
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -35,7 +38,7 @@ namespace EasyPlanner
             current.name = txt_name.Text;
             current.numberAVS = txtavs.Text;
             current.occupancyRate = float.Parse(txt_occupencyrate.Text);
-            current.idRole = 1;
+            current.idRole = (int) cob_role.SelectedValue;
             bdModel.People.Add(current);
             bdModel.SaveChanges();
             this.Close();
