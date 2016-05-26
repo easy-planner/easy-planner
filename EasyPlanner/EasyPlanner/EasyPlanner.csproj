@@ -98,13 +98,16 @@
     <Compile Include="ScheduleSlot.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
+    <Compile Include="AddPlotWindow.xaml.cs">
+      <DependentUpon>AddPlotWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPlotsWindow.xaml.cs">
+      <DependentUpon>ViewPlotsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkingShift.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
-    <Page Include="AddPlotWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -112,11 +115,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AddPlotWindow.xaml.cs">
-      <DependentUpon>AddPlotWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Window1.xaml">
+    <Page Include="AddPlotWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewPlotsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
