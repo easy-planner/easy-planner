@@ -20,6 +20,8 @@ namespace EasyPlanner
     public partial class Window1 : Window
     {
         bd_easyplannerEntities bd = new bd_easyplannerEntities();
+        private ScheduleSlot current;
+
         public Window1()
         {
             InitializeComponent();
@@ -30,14 +32,17 @@ namespace EasyPlanner
             dgTest.ItemsSource = bd.People.ToList();
         }
 
-        private void cbDayOfWeek_DropDownClosed(object sender, EventArgs e)
+        private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Jour de la semaine : " + cbDayOfWeek.Text);
-            var original = bd.ScheduleSlots.SingleOrDefault(b => b.dayOfWeek == "lundi");
-            if (original != null)
-            {
-               // original.dayOfWeek. = DayOfWeek.Saturday.;
-            }
+            current = new ScheduleSlot();
+            current.dayOfWeek = cbDayOfWeek.Text;
+            current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
+            current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
+            //current.minAttendency = 
+            //bd.ScheduleSlots.Add(current);
+            //bd.SaveChanges();
+            //this.Close();
+
         }
     }
 }

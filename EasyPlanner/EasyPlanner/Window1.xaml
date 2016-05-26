@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="Window1" Height="553.879" Width="678.866" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="dgTest" HorizontalAlignment="Left" Margin="39,288,0,0" VerticalAlignment="Top" Height="180" Width="594"/>
+        <DataGrid x:Name="dgTest" HorizontalAlignment="Left" Margin="484,321,0,0" VerticalAlignment="Top" Height="38" Width="93"/>
         <Label x:Name="lbl_dayOfWeek" Content="Jour de semaine" HorizontalAlignment="Left" Margin="39,53,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="242,53,0,0" VerticalAlignment="Top" Width="120" DropDownClosed="cbDayOfWeek_DropDownClosed">
-            <ComboBoxItem x:Name="monday" Content="Lundi" HorizontalAlignment="Left" Width="118" />
+        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="242,53,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem x:Name="monday" Content="Lundi" HorizontalAlignment="Left" Width="118" IsSelected="True" />
             <ComboBoxItem x:Name="tuesday" Content="Mardi" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem x:Name="wednesday" Content="Mercredi" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem x:Name="thursday" Content="Jeudi" HorizontalAlignment="Left" Width="118"/>
@@ -66,6 +66,11 @@
         </ComboBox>
         <DatePicker x:Name="dpFirstDay" HorizontalAlignment="Left" Margin="242,198,0,0" VerticalAlignment="Top" Width="120"/>
         <DatePicker x:Name="dpLastDay" HorizontalAlignment="Left" Margin="242,237,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="328,423,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click"/>
+        <Label x:Name="lblAttendency" Content="Quotat" HorizontalAlignment="Left" Margin="39,277,0,0" VerticalAlignment="Top" Width="83"/>
+        <ComboBox x:Name="cbAttendency" HorizontalAlignment="Left" Margin="242,277,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem x:Name="A01" Content="1" HorizontalAlignment="Left" Width="118" IsSelected="True"/>
+        </ComboBox>
 
     </Grid>
 </Window>
