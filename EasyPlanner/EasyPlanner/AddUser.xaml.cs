@@ -21,13 +21,14 @@ namespace EasyPlanner
     {
         bd_easyplannerEntities bdModel;
         Person current;
-        public AddUser(bd_easyplannerEntities bdModel)
+        public AddUser()
         {
             InitializeComponent();
-            this.bdModel = bdModel;
+            bdModel = new bd_easyplannerEntities();
             cob_role.ItemsSource = bdModel.Roles.ToList();
             cob_role.DisplayMemberPath = "roleName";
             cob_role.SelectedValuePath = "idRole";
+            
             
         }
 

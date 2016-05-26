@@ -19,17 +19,17 @@ namespace EasyPlanner
     /// </summary>
     public partial class ManageUser : Window
     {
-        bd_easyplannerEntities bd;
-        public ManageUser(bd_easyplannerEntities bdModel)
+        bd_easyplannerEntities bdModel;
+        public ManageUser()
         {
             InitializeComponent();
-            bd = bdModel;
-            dgPeople.ItemsSource = bd.People.ToList();
+            bdModel = new bd_easyplannerEntities();
+            dgPeople.ItemsSource = bdModel.People.ToList();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            AddUser wau = new AddUser(bd);
+            AddUser wau = new AddUser();
             wau.Show(); 
         }
     }

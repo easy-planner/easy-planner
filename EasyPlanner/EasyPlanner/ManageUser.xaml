@@ -18,10 +18,10 @@
         <DataGrid x:Name="dgPeople" HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto"  AutoGenerateColumns="False"  CanUserAddRows="False" ColumnWidth="*" Grid.ColumnSpan="2" Margin="10,0,-19.667,0" RenderTransformOrigin="0.754,1.712">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="dgrId" Binding="{Binding idPerson}"  Header="Id"  IsReadOnly="True" />
-                <DataGridTextColumn x:Name="dgrFirstName"  Binding="{Binding firstName}" Header="FirstName" IsReadOnly="True" />
-                <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="LastName" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrFirstName"  Binding="{Binding firstName}" Header="Prénom" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="Nom" IsReadOnly="True" />
                 <DataGridTextColumn x:Name="dgrNumberAVS"  Binding="{Binding numberAVS}" Header="Numéro AVS" IsReadOnly="True" />
-                <DataGridTextColumn x:Name="dgrOccupancyRate"  Binding="{Binding occupancyRate}" Header="occupancyRate" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrOccupancyRate"  Binding="{Binding occupancyRate}" Header="Taux d'occupation" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="button" Content="+" HorizontalAlignment="Left" Margin="11,-33,0,0" VerticalAlignment="Top" Width="31" Click="button_Click" Height="22"/>
