@@ -69,6 +69,9 @@
     <Compile Include="AbsencePreference.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="AddPlotWindow.xaml.cs">
+      <DependentUpon>AddPlotWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
@@ -89,9 +92,16 @@
     <Compile Include="ScheduleSlot.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewPlotsWindow.xaml.cs">
+      <DependentUpon>ViewPlotsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkingShift.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
+    <Page Include="AddPlotWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManageUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewPlotsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,7 +170,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WpfScheduler-Source\WpfScheduler.csproj">
