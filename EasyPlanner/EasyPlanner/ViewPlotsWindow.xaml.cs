@@ -23,10 +23,15 @@ namespace EasyPlanner
         public ViewPlotsWindow()
         {
             InitializeComponent();
+            dg.ItemsSource = bd.ScheduleSlots.ToList();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
+            ScheduleSlot sl = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
+            bd.ScheduleSlots.Remove(sl);
+            bd.SaveChanges();
             dg.ItemsSource = bd.ScheduleSlots.ToList();
         }
     }
