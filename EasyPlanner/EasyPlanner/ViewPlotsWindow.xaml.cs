@@ -28,11 +28,38 @@ namespace EasyPlanner
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
-            ScheduleSlot sl = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
-            bd.ScheduleSlots.Remove(sl);
-            bd.SaveChanges();
-            dg.ItemsSource = bd.ScheduleSlots.ToList();
+            Button b = sender as Button;
+            if (b.Name == "btnRemove")
+            {
+                if ((dg.SelectedItem as ScheduleSlot).idTimeSlot != 0)
+                {
+                    int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
+                    ScheduleSlot sl = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
+                    bd.ScheduleSlots.Remove(sl);
+                    bd.SaveChanges();
+                    dg.ItemsSource = bd.ScheduleSlots.ToList();
+                }
+
+
+            } else if (b.Name == "btnUpdate")
+            {
+                int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
+                ScheduleSlot s1 = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
+                ScheduleSlot tmp = s1;
+                
+                AddPlotWindow apw = new AddPlotWindow(tmp);
+                bd.ScheduleSlots.Remove(s1);
+                apw.ShowDialog();
+                bd.SaveChanges();
+                dg.ItemsSource = bd.ScheduleSlots.ToList();
+            } 
+
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

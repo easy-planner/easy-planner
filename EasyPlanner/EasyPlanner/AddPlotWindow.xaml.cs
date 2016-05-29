@@ -27,11 +27,30 @@ namespace EasyPlanner
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public AddPlotWindow(ScheduleSlot ss)
         {
-            //dgTest.ItemsSource = bd.People.ToList();
-            //dgTest.ItemsSource = bd.ScheduleSlots.ToList();
+            int m, h = 0;
+            InitializeComponent();
+            cbDayOfWeek.Text = ss.dayOfWeek;
+            cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
+            cbStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
+            TimeSpan ts = (TimeSpan)ss.endHour;
+            cbEndHourHour.Text = formatHoursMinutes(ts.Hours);
+            cbEndHourMinute.Text = formatHoursMinutes(ts.Minutes);
+            cbAttendency.Text = ss.minAttendency.ToString();
+
+            if (ss.firstDay.ToString() != "")
+            {
+                DateTime dt = (DateTime)ss.firstDay;
+                dpFirstDay.SelectedDate = dt;
+            }
+            if (ss.lastDay.ToString() != "")
+            {
+                DateTime dt = (DateTime)ss.lastDay;
+                dpLastDay.SelectedDate = dt;
+            }
         }
+
 
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
@@ -45,6 +64,23 @@ namespace EasyPlanner
             bd.ScheduleSlots.Add(current);
             bd.SaveChanges();
             this.Close();
+         }
+
+        //Modify format of date and minutes. Add a 0 if h<10 and add 00 if m<10
+        private String formatHoursMinutes(int t)
+        {
+            String s = "";
+            if (t == 0)
+            {
+                s = "00";
+            } else if (t < 10)
+            {
+                s = "0" + t.ToString();
+            } else
+            {
+                s = t.ToString();
             }
+            return s;
+        }
     }
 }

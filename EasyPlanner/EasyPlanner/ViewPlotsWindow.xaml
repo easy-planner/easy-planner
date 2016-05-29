@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Vue des slots" Height="507" Width="1030.35">
     <Grid>
-        <DataGrid x:Name="dg" CanUserDeleteRows="True"  HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="722" AutoGenerateColumns="False">
+        <DataGrid x:Name="dg" CanUserDeleteRows="False"  HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="722" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="dgrId" Binding="{Binding idTimeSlot}"  Header="Id"  IsReadOnly="True" />
                 <DataGridTextColumn x:Name="dgrDayOfWeek"  Binding="{Binding dayOfWeek}" Header="Jour de semaine" IsReadOnly="True" />
@@ -19,7 +19,14 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="=Delete" Click="Button_Click"/>
+                            <Button Name="btnRemove" Content="Effacer" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnUpdate" Content="Mettre à jour" Click="Button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
