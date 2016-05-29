@@ -21,5 +21,12 @@ namespace EasyPlanner
         public Nullable<System.DateTime> firstDay { get; set; }
         public Nullable<System.DateTime> lastDay { get; set; }
         public int minAttendency { get; set; }
+        public double DeltaTime
+        {
+            get
+            {
+                return this.endHour.Subtract(this.startHour).TotalHours;
+            }
+        }
     }
 }
