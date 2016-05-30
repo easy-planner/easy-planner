@@ -1,4 +1,11 @@
-﻿using System;
+﻿/////////////////////////////////////////////////////////////
+// Class responsible : Greg
+// Last update : 30.05.2016
+// Sprint 4 and 5
+// Story(ies) : Create an view Schedule slots, Update and delete Scheduled slots
+/////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,9 +34,9 @@ namespace EasyPlanner
             InitializeComponent();
         }
 
+        //Constructor for the "Update Plot Window", setting the previous data in the different fields
         public AddPlotWindow(ScheduleSlot ss)
         {
-            int m, h = 0;
             InitializeComponent();
             cbDayOfWeek.Text = ss.dayOfWeek;
             cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
@@ -51,7 +58,7 @@ namespace EasyPlanner
             }
         }
 
-
+        //Insert data in the database, not necessary to generate an ID
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
             current = new ScheduleSlot();
@@ -66,7 +73,8 @@ namespace EasyPlanner
             this.Close();
          }
 
-        //Modify format of date and minutes. Add a 0 if h<10 and add 00 if m<10
+        //Modify format of date and minutes. Add a 0 if h<10 and add 00 if m<10.
+        //Converts data into String format to be displayed
         private String formatHoursMinutes(int t)
         {
             String s = "";

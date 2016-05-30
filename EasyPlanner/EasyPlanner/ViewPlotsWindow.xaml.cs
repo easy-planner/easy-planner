@@ -1,4 +1,11 @@
-﻿using System;
+﻿/////////////////////////////////////////////////////////////
+// Class responsible : Greg
+// Last update : 30.05.2016
+// Sprint 4 and 5
+// Story(ies) : Create an view Schedule slots, Update and delete Scheduled slots
+/////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +38,7 @@ namespace EasyPlanner
             Button b = sender as Button;
             if (b.Name == "btnRemove")
             {
+                //Look for the row in the database, in order to remove it.
                 if ((dg.SelectedItem as ScheduleSlot).idTimeSlot != 0)
                 {
                     int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
@@ -55,11 +63,6 @@ namespace EasyPlanner
             } 
 
 
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
         }
     }
 }
