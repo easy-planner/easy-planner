@@ -22,14 +22,10 @@ namespace EasyPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
-        Scheduler scheduler;
         bd_easyplannerEntities bdModel;
         public MainWindow()
         {
             InitializeComponent();
-            //scheduler = new Scheduler();
             bdModel = new bd_easyplannerEntities();
 
             //Plinio (PSI)
@@ -49,7 +45,7 @@ namespace EasyPlanner
         private void mainScheduler_Loaded(object s, RoutedEventArgs e)
         {
             //mainScheduler.SelectedDate = new DateTime(2016, 05, 17);
-            mainScheduler.SelectedDate = DateTime.Now;
+            mainScheduler.SelectedDate = DateTime.Today;
             mainScheduler.StartJourney = new TimeSpan(7, 0, 0);
             mainScheduler.EndJourney = new TimeSpan(19, 0, 0);
             mainScheduler.Loaded += mainScheduler_Loaded;
@@ -233,6 +229,13 @@ namespace EasyPlanner
                 s += Environment.NewLine;
             }
             MessageBox.Show(s);
+        }
+
+        private void testGenerationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<WorkingShift> shifts = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(mainScheduler.SelectedDate,bdModel), mainScheduler.SelectedDate).GetShifts();
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+            PlanningGeneratorTools.AddWorkingShiftScheduler(shifts, mainScheduler);
         }
     }
 }

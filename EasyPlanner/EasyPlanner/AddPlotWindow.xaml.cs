@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,11 @@ namespace EasyPlanner
             current = new ScheduleSlot();
             bd = new bd_easyplannerEntities();
             modified = false;
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                cbDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
+            }
+            cbDayOfWeek.SelectedIndex = 1;
         }
 
         //Constructor for the "Update Plot Window", setting the previous data in the different fields
@@ -49,7 +55,11 @@ namespace EasyPlanner
 
             InitializeComponent();
 
-            //cbDayOfWeek.Text = ss.dayOfWeek;
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                cbDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
+            }
+            cbDayOfWeek.SelectedIndex = 1;
             cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
             cbStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
             TimeSpan ts = (TimeSpan)ss.endHour;
@@ -78,12 +88,12 @@ namespace EasyPlanner
         //Insert data in the database, not necessary to generate an ID
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            //current.dayOfWeek = cbDayOfWeek.Text;
+            current.dayOfWeek = cbDayOfWeek.SelectedIndex;
             current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
             current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
             current.minAttendency = Int32.Parse(cbAttendency.Text);
-           // current.firstDay = dpFirstDay.SelectedDate;
-            //current.lastDay = dpLastDay.SelectedDate;
+            current.firstDay = (DateTime) dpFirstDay.SelectedDate;
+            current.lastDay = (DateTime) dpLastDay.SelectedDate;
 
             if (!modified)
             {

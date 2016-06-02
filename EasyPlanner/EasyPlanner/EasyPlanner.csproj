@@ -75,6 +75,10 @@
     <Compile Include="AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FlowGraphLib\FlowArc.cs" />
+    <Compile Include="FlowGraphLib\FlowGraph.cs" />
+    <Compile Include="FlowGraphLib\FlowNode.cs" />
+    <Compile Include="FlowGraphLib\FlowPath.cs" />
     <Compile Include="ManageUser.xaml.cs">
       <DependentUpon>ManageUser.xaml</DependentUpon>
     </Compile>

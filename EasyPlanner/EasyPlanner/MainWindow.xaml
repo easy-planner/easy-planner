@@ -37,6 +37,7 @@
             <TextBox Name="removeFirstTbx" Height="20" Margin="0,11,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" DockPanel.Dock="Left" Text="1er" VerticalAlignment="Top" Width="28"/>
             <TextBox Name="removeLastTbx" Height="20" Margin="0,11,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" DockPanel.Dock="Left" Text="dernier" VerticalAlignment="Top" Width="27"/>
             <Button Name="slotsShiftsInWeekBtn" Margin="10,11,0,11" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="SlotsShiftsWeek"  VerticalAlignment="Center" Click="slotsShiftsInWeekBtn_Click" Width="93"></Button>
+            <Button Name="testGenerationBtn" Margin="10,11,0,11" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="TestGeneration"  VerticalAlignment="Center" Click="testGenerationBtn_Click" Width="93"></Button>
         </DockPanel>
         <my:Scheduler
             Grid.Row="1"

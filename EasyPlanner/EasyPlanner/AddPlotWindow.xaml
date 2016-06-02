@@ -1,9 +1,10 @@
-﻿<Window x:Class="EasyPlanner.AddPlotWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="EasyPlanner.AddPlotWindow"
         mc:Ignorable="d"
         Title="Ajout d'un slot" Height="434.879" Width="370.866">
     <Grid>
@@ -12,15 +13,7 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lbl_dayOfWeek" Content="Jour de semaine" HorizontalAlignment="Left" Margin="39,53,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
-        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="175,53,0,0" VerticalAlignment="Top" Width="120" Height="22">
-            <ComboBoxItem x:Name="monday" Content="Lundi" HorizontalAlignment="Left" Width="118" IsSelected="True" />
-            <ComboBoxItem x:Name="tuesday" Content="Mardi" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem x:Name="wednesday" Content="Mercredi" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem x:Name="thursday" Content="Jeudi" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem x:Name="friday" Content="Vendredi" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem x:Name="saturday" Content="Samedi" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem x:Name="sunday" Content="Dimanche" HorizontalAlignment="Left" Width="118"/>
-        </ComboBox>
+        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="175,53,0,0" VerticalAlignment="Top" Width="120" Height="22"></ComboBox>
         <Label x:Name="lblStartHour" Content="Heure de début" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.655,0.713" Height="26" Width="93"/>
         <Label x:Name="lblEndHour" Content="Heure de fin" HorizontalAlignment="Left" Margin="39,133,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
         <Label x:Name="lblFirstDay" Content="Premier jour" HorizontalAlignment="Left" Margin="39,189,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
