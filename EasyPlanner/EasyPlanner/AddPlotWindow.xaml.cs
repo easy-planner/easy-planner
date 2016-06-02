@@ -49,7 +49,7 @@ namespace EasyPlanner
 
             InitializeComponent();
 
-            cbDayOfWeek.Text = ss.dayOfWeek;
+            //cbDayOfWeek.Text = ss.dayOfWeek;
             cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
             cbStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
             TimeSpan ts = (TimeSpan)ss.endHour;
@@ -78,12 +78,12 @@ namespace EasyPlanner
         //Insert data in the database, not necessary to generate an ID
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            current.dayOfWeek = cbDayOfWeek.Text;
+            //current.dayOfWeek = cbDayOfWeek.Text;
             current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
             current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
             current.minAttendency = Int32.Parse(cbAttendency.Text);
-            current.firstDay = dpFirstDay.SelectedDate;
-            current.lastDay = dpLastDay.SelectedDate;
+           // current.firstDay = dpFirstDay.SelectedDate;
+            //current.lastDay = dpLastDay.SelectedDate;
 
             if (!modified)
             {
