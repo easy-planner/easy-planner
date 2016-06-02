@@ -119,13 +119,7 @@ namespace EasyPlanner
             DateTime nextSunday = lastMonday.AddDays(6);
 
             // return all slot between monday and sunday
-            return bd.ScheduleSlots.Where(s => 
-                        s.firstDay > lastMonday  && s.firstDay < nextSunday
-                        ||
-                        s.lastDay > lastMonday && s.lastDay < nextSunday
-                        ||
-                        s.firstDay < lastMonday && s.lastDay > nextSunday
-                            ).ToList();
+            return bd.ScheduleSlots.Where(s => s.lastDay >= lastMonday && s.firstDay <= nextSunday).ToList();
         }
     }
 }
