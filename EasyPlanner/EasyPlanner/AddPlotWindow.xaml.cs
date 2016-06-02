@@ -26,18 +26,29 @@ namespace EasyPlanner
     /// </summary>
     public partial class AddPlotWindow : Window
     {
-        bd_easyplannerEntities bd = new bd_easyplannerEntities();
+        bd_easyplannerEntities bd;
         private ScheduleSlot current;
+        private Boolean modified;
 
         public AddPlotWindow()
         {
             InitializeComponent();
+            current = new ScheduleSlot();
+            bd = new bd_easyplannerEntities();
+            modified = false;
         }
 
         //Constructor for the "Update Plot Window", setting the previous data in the different fields
-        public AddPlotWindow(ScheduleSlot ss)
+        /*public AddPlotWindow(ScheduleSlot ss)
         {
+            
+        }*/
+
+        public AddPlotWindow(ScheduleSlot ss, bd_easyplannerEntities bd)
+        {
+
             InitializeComponent();
+
             cbDayOfWeek.Text = ss.dayOfWeek;
             cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
             cbStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
@@ -56,19 +67,30 @@ namespace EasyPlanner
                 DateTime dt = (DateTime)ss.lastDay;
                 dpLastDay.SelectedDate = dt;
             }
+
+            this.bd = bd;
+            this.current = ss;
+            current.idTimeSlot = ss.idTimeSlot;
+            modified = true;
+
         }
 
         //Insert data in the database, not necessary to generate an ID
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            current = new ScheduleSlot();
             current.dayOfWeek = cbDayOfWeek.Text;
             current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
             current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
             current.minAttendency = Int32.Parse(cbAttendency.Text);
             current.firstDay = dpFirstDay.SelectedDate;
             current.lastDay = dpLastDay.SelectedDate;
-            bd.ScheduleSlots.Add(current);
+
+            if (!modified)
+            {
+
+                bd.ScheduleSlots.Add(current);
+            }
+
             bd.SaveChanges();
             this.Close();
          }

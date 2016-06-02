@@ -55,11 +55,14 @@ namespace EasyPlanner
                 ScheduleSlot s1 = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
                 ScheduleSlot tmp = s1;
                 
-                AddPlotWindow apw = new AddPlotWindow(tmp);
-                bd.ScheduleSlots.Remove(s1);
+                AddPlotWindow apw = new AddPlotWindow(tmp, bd);
+                //bd.ScheduleSlots.Remove(s1);
                 apw.ShowDialog();
+                
                 bd.SaveChanges();
                 dg.ItemsSource = bd.ScheduleSlots.ToList();
+
+                
             } 
 
 
