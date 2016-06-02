@@ -16,6 +16,7 @@ namespace WpfScheduler
         public DateTime End { get; set; }
         public bool AllDay { get; set; }
         public Brush Color { get; set; }
+        public long IdShift { get; set; }
 
         public Event()
         {

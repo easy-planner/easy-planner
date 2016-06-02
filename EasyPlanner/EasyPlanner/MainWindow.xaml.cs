@@ -22,18 +22,34 @@ namespace EasyPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         Scheduler scheduler;
         bd_easyplannerEntities bdModel;
         public MainWindow()
         {
             InitializeComponent();
-            scheduler = new Scheduler();
+            //scheduler = new Scheduler();
             bdModel = new bd_easyplannerEntities();
+
+            //Plinio (PSI)
+            mainScheduler.OnEventDoubleClick += MainScheduler_OnEventDoubleClick;
+            mainScheduler.OnScheduleDoubleClick += MainScheduler_OnScheduleDoubleClick;
+        }
+        void MainScheduler_OnScheduleDoubleClick(object sender, DateTime e)
+        {
+            MessageBox.Show("Test PSI" + e.Date.ToShortDateString());
+        }
+
+        void MainScheduler_OnEventDoubleClick(object sender, Event e)
+        {
+            MessageBox.Show("Test PSI" + e.IdShift);
         }
 
         private void mainScheduler_Loaded(object s, RoutedEventArgs e)
         {
-            mainScheduler.SelectedDate = new DateTime(2016, 05, 17);
+            //mainScheduler.SelectedDate = new DateTime(2016, 05, 17);
+            mainScheduler.SelectedDate = DateTime.Now;
             mainScheduler.StartJourney = new TimeSpan(7, 0, 0);
             mainScheduler.EndJourney = new TimeSpan(19, 0, 0);
             mainScheduler.Loaded += mainScheduler_Loaded;
@@ -48,11 +64,14 @@ namespace EasyPlanner
                 Person person = bdModel.People.Find(ws.idPerson);
                 mainScheduler.AddEvent(new Event()
                 {
-                    Subject = person.firstName + " " + person.name,
+                    //Subject = person.firstName + " " + person.name,
+                    // Modif pour test plinio (psi)
+                    Subject = ws.idShift + "-" + Environment.NewLine + person.firstName + " " + person.name,
                     Description = ws.description,
                     Color = colorPiker(person),
                     Start = (System.DateTime)ws.start,
                     End = (System.DateTime)ws.end,
+                    IdShift = ws.idShift,
                 });
             }
         }
@@ -128,6 +147,92 @@ namespace EasyPlanner
         {
             ViewPlotsWindow vpw = new ViewPlotsWindow();
             vpw.Show();
+        }
+
+        private void addEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<WorkingShift> ws = new List<WorkingShift>();
+            DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+7, 5, 00, 00);
+            DateTime todayEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+7, 7, 20, 00);
+
+            for (int i = 0; i < 5; i++)
+            {
+                ws.Add(new WorkingShift
+                {
+                    description = "Psi" + i + 1,
+                    idShift = i + 1,
+                    Person = bdModel.People.First(p => p.idPerson == 5),
+                    start = todayStart.AddDays(i),
+                    end = todayEnd.AddDays(i),
+                });
+            }
+
+            PlanningGeneratorTools.AddWorkingShiftScheduler(ws, mainScheduler);
+            //PlanningGeneratorTools.PersistWorkingShiftDataBase(ws, bdModel);
+            //PlanningGeneratorTools.RemoveWorkingShiftDataBase(ws, bdModel);
+
+        }
+
+        private void clearEventBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+        }
+
+        private void addDatabaseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<WorkingShift> ws = new List<WorkingShift>();
+            DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 5, 00, 00);
+            DateTime todayEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 7, 20, 00);
+
+            for (int i = 0; i < 5; i++)
+            {
+                ws.Add(new WorkingShift
+                {
+                    description = "Psi" + i + 1,
+                    idShift = i + 1,
+                    Person = bdModel.People.First(p => p.idPerson == 5),
+                    start = todayStart.AddDays(i),
+                    end = todayEnd.AddDays(i),
+                });
+            }
+
+            PlanningGeneratorTools.AddWorkingShiftScheduler(ws, mainScheduler);
+            PlanningGeneratorTools.PersistWorkingShiftDataBase(ws, bdModel);
+        }
+
+        private void removeDatabaseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<WorkingShift> ws = new List<WorkingShift>();
+            for (int i = int.Parse(removeFirstTbx.Text); i <= int.Parse(removeLastTbx.Text); i++)
+            {
+                ws.Add(new WorkingShift
+                {
+                    idShift = i,
+                });
+            }
+
+            PlanningGeneratorTools.RemoveWorkingShiftDataBase(ws, bdModel);
+            PlanningGeneratorTools.RemoveWorkingShiftScheduler(ws, mainScheduler);
+        }
+
+        private void slotsShiftsInWeekBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime d = mainScheduler.SelectedDate;
+
+            String s = "Semaine comprenant le " + d.ToString() + Environment.NewLine;
+            s += "========================================== " + Environment.NewLine + Environment.NewLine;
+            List<ScheduleSlot> scheduleSlotsWeek;
+
+            scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
+            foreach (ScheduleSlot slot in scheduleSlotsWeek)
+            {
+                s += slot.idTimeSlot + " - " 
+                    + slot.dayOfWeek + "  de " + slot.startHour + " à " + slot.endHour
+                    + " du " + String.Format("{0:MM/dd/yyyy}", slot.firstDay) + " au " + String.Format("{0:MM/dd/yyyy}", slot.lastDay)
+                    + " , nb min : " + slot.minAttendency;
+                s += Environment.NewLine;
+            }
+            MessageBox.Show(s);
         }
     }
 }

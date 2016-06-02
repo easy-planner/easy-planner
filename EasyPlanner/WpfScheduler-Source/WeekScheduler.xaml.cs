@@ -186,7 +186,10 @@ namespace WpfScheduler
 
                 IEnumerable<Event> eventList = _scheduler.Events.Where(ev => ev.Start.Date == ev.End.Date && !ev.AllDay).OrderBy(ev => ev.Start);
 
-                if (date == null)
+                //Modification par Plinio (psi) pour supprimer events
+                if (date == null   
+                        || (int)date.Value.Date.Subtract(FirstDay.Date).TotalDays > 6
+                        || (int)date.Value.Date.Subtract(FirstDay.Date).TotalDays < 0) 
                 {
                     column1.Children.Clear();
                     column2.Children.Clear();
@@ -209,7 +212,7 @@ namespace WpfScheduler
                 foreach (Event e in eventList)
                 {
                     int numColumn = (int)e.Start.Date.Subtract(FirstDay.Date).TotalDays + 1;
-                    if (numColumn >= 0 && numColumn < 7)
+                    if (numColumn >= 1 && numColumn <= 7) // Modif Plinio (psi) if (numColumn >= 0 && numColumn < 7)
                     {
                         Canvas sp = (Canvas)this.FindName("column" + numColumn);
                         sp.Width = columnWidth;

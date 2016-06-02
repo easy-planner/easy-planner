@@ -86,6 +86,7 @@
     <Compile Include="Person.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="PlanningGeneratorTools.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
@@ -162,7 +163,9 @@
     <None Include="ModelEF.edmx.diagram">
       <DependentUpon>ModelEF.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
