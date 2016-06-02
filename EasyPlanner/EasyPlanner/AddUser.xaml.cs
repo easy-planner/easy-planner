@@ -21,6 +21,7 @@ namespace EasyPlanner
     {
         bd_easyplannerEntities bdModel;
         Person current;
+        Boolean modify;
         public AddUser()
         {
             InitializeComponent();
@@ -28,20 +29,58 @@ namespace EasyPlanner
             cob_role.ItemsSource = bdModel.Roles.ToList();
             cob_role.DisplayMemberPath = "roleName";
             cob_role.SelectedValuePath = "idRole";
+            modify = false;
+        }
+
+        public AddUser(Person current, bd_easyplannerEntities bd)
+        {
+            InitializeComponent();
+
+            bdModel = bd;
+            modify = true;
+            this.current = current;
+            txtName.Text = current.name;
+            txt_firstname.Text = current.firstName;
+            txtavs.Text = current.numberAVS;
+            txt_occupencyrate.Text = current.occupancyRate.ToString();
+            txtDescription.Text = current.description;
+            cob_role.SelectedValue = current.idRole;
+            btn_save.Content = "Modifier";
             
         }
 
+
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            current = new Person();
+            if (!modify)
+            {
+                current = new Person();
+                current.password = pwdPassword.Password;
+            }else if (pwdPassword.Password != null)
+            {
+                current.password = pwdPassword.Password;
+            }
+           
             current.firstName = txt_firstname.Text;
-            current.name = txt_name.Text;
+            current.name = txtName.Text;
             current.numberAVS = txtavs.Text;
             current.occupancyRate = float.Parse(txt_occupencyrate.Text);
-            current.idRole = 1;
-            bdModel.People.Add(current);
+            current.idRole = (int)cob_role.SelectedValue;
+            
+            current.description = txtDescription.Text;
+            if (!modify)
+            {
+                bdModel.People.Add(current);
+            }
             bdModel.SaveChanges();
             this.Close();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }
