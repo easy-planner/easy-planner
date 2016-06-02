@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
+//Christophe Luthi
+//Sprint 2
 namespace EasyPlanner
 {
     /// <summary>

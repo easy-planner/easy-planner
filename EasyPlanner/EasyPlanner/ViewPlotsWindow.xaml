@@ -5,9 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="Vue des slots" Height="435" Width="764" Loaded="Window_Loaded">
+        Title="Vue des slots" Height="507" Width="1030.35">
     <Grid>
-        <DataGrid x:Name="dg" HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="705"/>
+        <DataGrid x:Name="dg" CanUserDeleteRows="False"  HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="722" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="dgrId" Binding="{Binding idTimeSlot}"  Header="Id"  IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrDayOfWeek"  Binding="{Binding dayOfWeek}" Header="Jour de semaine" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrStartHour"  Binding="{Binding startHour}" Header="Heure de début" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrDndHour"  Binding="{Binding endHour}" Header="Heure de fin" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrFirstDay"  Binding="{Binding firstDay}" Header="Premier jour" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrLastDay"  Binding="{Binding lastDay}" Header="Dernier jour" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrMinAttendency"  Binding="{Binding minAttendency}" Header="Quotat" IsReadOnly="True" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnRemove" Content="Effacer" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnUpdate" Content="Mettre à jour" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

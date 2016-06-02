@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="Ajout d'un slot" Height="434.879" Width="472.866" Loaded="Window_Loaded">
+        Title="Ajout d'un slot" Height="434.879" Width="370.866">
     <Grid>
-        <Label x:Name="lbl_dayOfWeek" Content="Jour de semaine" HorizontalAlignment="Left" Margin="39,53,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="242,53,0,0" VerticalAlignment="Top" Width="120">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lbl_dayOfWeek" Content="Jour de semaine" HorizontalAlignment="Left" Margin="39,53,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
+        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="175,53,0,0" VerticalAlignment="Top" Width="120" Height="22">
             <ComboBoxItem x:Name="monday" Content="Lundi" HorizontalAlignment="Left" Width="118" IsSelected="True" />
             <ComboBoxItem x:Name="tuesday" Content="Mardi" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem x:Name="wednesday" Content="Mercredi" HorizontalAlignment="Left" Width="118"/>
@@ -17,11 +21,11 @@
             <ComboBoxItem x:Name="saturday" Content="Samedi" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem x:Name="sunday" Content="Dimanche" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
-        <Label x:Name="lblStartHour" Content="Heure de début" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.655,0.713"/>
-        <Label x:Name="lblEndHour" Content="Heure de fin" HorizontalAlignment="Left" Margin="39,133,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblFirstDay" Content="Premier jour" HorizontalAlignment="Left" Margin="39,189,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblLastDay" Content="Dernier jour" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbStartHourHour" HorizontalAlignment="Left" Margin="242,102,0,0" VerticalAlignment="Top" Width="50">
+        <Label x:Name="lblStartHour" Content="Heure de début" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.655,0.713" Height="26" Width="93"/>
+        <Label x:Name="lblEndHour" Content="Heure de fin" HorizontalAlignment="Left" Margin="39,133,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <Label x:Name="lblFirstDay" Content="Premier jour" HorizontalAlignment="Left" Margin="39,189,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <Label x:Name="lblLastDay" Content="Dernier jour" HorizontalAlignment="Left" Margin="39,230,0,0" VerticalAlignment="Top" Height="26" Width="73"/>
+        <ComboBox x:Name="cbStartHourHour" HorizontalAlignment="Left" Margin="175,102,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="startH6" Content="06" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="startH7" Content="07" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startH8" Content="08" HorizontalAlignment="Left" Width="92"/>
@@ -36,7 +40,7 @@
             <ComboBoxItem x:Name="startH17" Content="17" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startH18" Content="18" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <ComboBox x:Name="cbEndHourHour" HorizontalAlignment="Left" Margin="242,137,0,0" VerticalAlignment="Top" Width="50">
+        <ComboBox x:Name="cbEndHourHour" HorizontalAlignment="Left" Margin="175,137,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="endH6" Content="06" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="endH7" Content="07" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endH8" Content="08" HorizontalAlignment="Left" Width="92"/>
@@ -51,23 +55,23 @@
             <ComboBoxItem x:Name="endH17" Content="17" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endH18" Content="18" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <ComboBox x:Name="cbStartHourMinute" HorizontalAlignment="Left" Margin="312,102,0,0" VerticalAlignment="Top" Width="50">
+        <ComboBox x:Name="cbStartHourMinute" HorizontalAlignment="Left" Margin="245,102,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="startM00" Content="00" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="startM15" Content="15" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startM30" Content="30" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startM45" Content="45" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <ComboBox x:Name="cbEndHourMinute" HorizontalAlignment="Left" Margin="312,137,0,0" VerticalAlignment="Top" Width="50">
+        <ComboBox x:Name="cbEndHourMinute" HorizontalAlignment="Left" Margin="245,137,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="endM00" Content="00" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="endM15" Content="15" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endM30" Content="30" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endM45" Content="45" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <DatePicker x:Name="dpFirstDay" HorizontalAlignment="Left" Margin="242,198,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="dpLastDay" HorizontalAlignment="Left" Margin="242,237,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="242,345,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click"/>
-        <Label x:Name="lblAttendency" Content="Quotat" HorizontalAlignment="Left" Margin="39,277,0,0" VerticalAlignment="Top" Width="83"/>
-        <ComboBox x:Name="cbAttendency" HorizontalAlignment="Left" Margin="242,281,0,0" VerticalAlignment="Top" Width="50">
+        <DatePicker x:Name="dpFirstDay" HorizontalAlignment="Left" Margin="175,198,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <DatePicker x:Name="dpLastDay" HorizontalAlignment="Left" Margin="175,237,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="175,345,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click" Height="20"/>
+        <Label x:Name="lblAttendency" Content="Quotat" HorizontalAlignment="Left" Margin="39,277,0,0" VerticalAlignment="Top" Width="83" Height="26"/>
+        <ComboBox x:Name="cbAttendency" HorizontalAlignment="Left" Margin="175,281,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="50" IsSelected="True"/>
             <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="50" />
             <ComboBoxItem Content="3" HorizontalAlignment="Left" Width="50" />
