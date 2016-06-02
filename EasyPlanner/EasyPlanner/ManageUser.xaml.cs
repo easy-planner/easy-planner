@@ -32,7 +32,6 @@ namespace EasyPlanner
             bdModel.People.Remove((Person) dgPeople.SelectedItem);
             bdModel.SaveChanges();
 
-            //repaint
         }
 
         private void dgPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,5 +46,10 @@ namespace EasyPlanner
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+   
+
+        }
     }
 }

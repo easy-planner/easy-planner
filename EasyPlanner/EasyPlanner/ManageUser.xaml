@@ -22,7 +22,22 @@
                 <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="LastName" IsReadOnly="True" />
                 <DataGridTextColumn x:Name="dgrNumberAVS"  Binding="{Binding numberAVS}" Header="Numéro AVS" IsReadOnly="True" />
                 <DataGridTextColumn x:Name="dgrOccupancyRate"  Binding="{Binding occupancyRate}" Header="occupancyRate" IsReadOnly="True" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnRemove" Content="Effacer" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="btnUpdate" Content="Mettre à jour" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
+            
         </DataGrid>
         <Button x:Name="btnDelete" Content="Supprimer" HorizontalAlignment="Left" Margin="512,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnDelete_Click"/>
 
