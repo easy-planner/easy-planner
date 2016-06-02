@@ -17,9 +17,9 @@ namespace EasyPlanner
         public int idTimeSlot { get; set; }
         public string dayOfWeek { get; set; }
         public System.TimeSpan startHour { get; set; }
-        public Nullable<System.TimeSpan> endHour { get; set; }
-        public Nullable<System.DateTime> firstDay { get; set; }
-        public Nullable<System.DateTime> lastDate { get; set; }
+        public System.TimeSpan endHour { get; set; }
+        public System.DateTime firstDay { get; set; }
+        public System.DateTime lastDate { get; set; }
         public int idPerson { get; set; }
     
         public virtual Person Person { get; set; }

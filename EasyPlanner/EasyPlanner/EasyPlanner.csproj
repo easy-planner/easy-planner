@@ -78,10 +78,20 @@
     <Compile Include="ManageUser.xaml.cs">
       <DependentUpon>ManageUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModelEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEF.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelEF.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelEF.edmx</DependentUpon>
     </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
@@ -129,16 +139,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelEF.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEF.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelEF.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelEF.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
