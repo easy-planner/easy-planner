@@ -16,7 +16,7 @@ namespace EasyPlanner
     public partial class bd_easyplannerEntities : DbContext
     {
         public bd_easyplannerEntities()
-            : base("name=bd_easyplannerEntities1")
+            : base("name=bd_easyplannerEntities")
         {
         }
     

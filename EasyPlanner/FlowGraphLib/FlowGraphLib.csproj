@@ -43,6 +43,7 @@
     <Compile Include="FlowArc.cs" />
     <Compile Include="FlowGraph.cs" />
     <Compile Include="FlowNode.cs" />
+    <Compile Include="FlowPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

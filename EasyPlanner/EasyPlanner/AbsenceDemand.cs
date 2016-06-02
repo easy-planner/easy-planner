@@ -15,8 +15,8 @@ namespace EasyPlanner
     public partial class AbsenceDemand
     {
         public int idAbsence { get; set; }
-        public Nullable<System.DateTime> start { get; set; }
-        public Nullable<System.DateTime> end { get; set; }
+        public System.DateTime start { get; set; }
+        public System.DateTime end { get; set; }
         public int state { get; set; }
         public string description { get; set; }
         public int idPerson { get; set; }

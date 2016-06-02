@@ -15,8 +15,8 @@ namespace EasyPlanner
     public partial class WorkingShift
     {
         public int idShift { get; set; }
-        public Nullable<System.DateTime> start { get; set; }
-        public Nullable<System.DateTime> end { get; set; }
+        public System.DateTime start { get; set; }
+        public System.DateTime end { get; set; }
         public string description { get; set; }
         public int idPerson { get; set; }
     

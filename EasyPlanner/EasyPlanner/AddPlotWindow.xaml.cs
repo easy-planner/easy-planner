@@ -36,12 +36,12 @@ namespace EasyPlanner
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
             current = new ScheduleSlot();
-            current.dayOfWeek = cbDayOfWeek.Text;
+            //current.dayOfWeek = cbDayOfWeek.Text;
             current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
             current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
             current.minAttendency = Int32.Parse(cbAttendency.Text);
-            current.firstDay = dpFirstDay.SelectedDate;
-            current.lastDay = dpLastDay.SelectedDate;
+            //current.firstDay = dpFirstDay.SelectedDate;
+            //current.lastDay = dpLastDay.SelectedDate;
             bd.ScheduleSlots.Add(current);
             bd.SaveChanges();
             this.Close();

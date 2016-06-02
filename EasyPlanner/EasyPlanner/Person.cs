@@ -25,7 +25,7 @@ namespace EasyPlanner
         public string firstName { get; set; }
         public string name { get; set; }
         public string numberAVS { get; set; }
-        public Nullable<float> occupancyRate { get; set; }
+        public float occupancyRate { get; set; }
         public string password { get; set; }
         public string description { get; set; }
         public int idRole { get; set; }
