@@ -31,6 +31,12 @@ namespace EasyPlanner
         private ScheduleSlot current;
         private Boolean modified;
 
+
+        // <summary>
+        /// create a ScheduleSlot
+        /// Populate an enum with days of week
+        /// </summary>
+        /// <param>None</param>
         public AddPlotWindow()
         {
             InitializeComponent();
@@ -44,6 +50,12 @@ namespace EasyPlanner
             cbDayOfWeek.SelectedIndex = 1;
         }
 
+        // <summary>
+        /// Populate data in the fields with the existing ScheduleSlot
+        /// set the (ScheduleSlot) current as the current scheduleslot
+        /// </summary>
+        /// <param name = "ss" >A Schedule slot already existing to get the data</param>
+        /// /// <param name = "bd" >the current easyplanner entity</param>
         public AddPlotWindow(ScheduleSlot ss, bd_easyplannerEntities bd)
         {
 
