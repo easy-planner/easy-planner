@@ -92,7 +92,6 @@ namespace EasyPlanner
 
             foreach (Event ev in eventsToRemove)
                 scheduler.DeleteEvent(ev.Id);
-            
         }
 
 
