@@ -110,6 +110,9 @@
     <Compile Include="ViewPlotsWindow.xaml.cs">
       <DependentUpon>ViewPlotsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WeekGenerationWindow\WeekGenerationWindow.xaml.cs">
+      <DependentUpon>WeekGenerationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkingShift.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewPlotsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WeekGenerationWindow\WeekGenerationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

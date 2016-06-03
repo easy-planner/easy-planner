@@ -73,6 +73,29 @@ namespace EasyPlanner
                 scheduler.DeleteEvent(eve.Id);
             }
         }
+
+        /// <summary>
+        /// Remove from schelduler the workingshifts for a specific week in the paramater.
+        /// (if the workingShif id is in the list then it is removed)
+        /// </summary>
+        /// <param name="d">date in the removal week</param>
+        /// <param name="bd">database</param>
+        public static void RemoveWeekWorkingShiftScheduler(DateTime d, Scheduler scheduler)
+        {
+            // lastMonday is always the Monday before nextSunday.
+            // When today is a Sunday, lastMonday will be tomorrow.     
+            int offset = d.DayOfWeek - DayOfWeek.Monday;
+            DateTime lastMonday = d.AddDays(-offset);
+            DateTime nextMonday = lastMonday.AddDays(7);
+
+            List<Event> eventsToRemove = scheduler.Events.Where(ev => ev.Start >= lastMonday && ev.Start <= nextMonday).ToList();
+
+            foreach (Event ev in eventsToRemove)
+                scheduler.DeleteEvent(ev.Id);
+            
+        }
+
+
         /// <summary>
         /// Remove from database the workingshifts listed in the paramater.
         /// (if the workingShif id is in the list then it is removed)
@@ -81,6 +104,7 @@ namespace EasyPlanner
         /// <param name="bd">database</param>
         public static void RemoveWorkingShiftDataBase(List<WorkingShift> wsList, bd_easyplannerEntities bd)
         {
+
             WorkingShift wsRemove=null;
             foreach (WorkingShift ws in wsList)
             {

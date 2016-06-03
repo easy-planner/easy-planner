@@ -145,7 +145,7 @@ namespace EasyPlanner
             vpw.Show();
         }
 
-        private void addEventBtn_Click(object sender, RoutedEventArgs e)
+        private void mnAddEvent(object s, RoutedEventArgs e)
         {
             List<WorkingShift> ws = new List<WorkingShift>();
             DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+7, 5, 00, 00);
@@ -169,12 +169,15 @@ namespace EasyPlanner
 
         }
 
-        private void clearEventBtn_Click(object sender, RoutedEventArgs e)
+        private void mnClearWeekEvent(object sender, RoutedEventArgs e)
+        {
+            PlanningGeneratorTools.RemoveWeekWorkingShiftScheduler(mainScheduler.SelectedDate, mainScheduler);
+        }
+        private void mnClearEvent(object sender, RoutedEventArgs e)
         {
             PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
         }
-
-        private void addDatabaseBtn_Click(object sender, RoutedEventArgs e)
+        private void mnAddDatabase(object sender, RoutedEventArgs e)
         {
             List<WorkingShift> ws = new List<WorkingShift>();
             DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 5, 00, 00);
@@ -211,7 +214,7 @@ namespace EasyPlanner
             PlanningGeneratorTools.RemoveWorkingShiftScheduler(ws, mainScheduler);
         }
 
-        private void slotsShiftsInWeekBtn_Click(object sender, RoutedEventArgs e)
+        private void mnSlotsShiftsInWeek(object sender, RoutedEventArgs e)
         {
             DateTime d = mainScheduler.SelectedDate;
 
@@ -231,11 +234,10 @@ namespace EasyPlanner
             MessageBox.Show(s);
         }
 
-        private void testGenerationBtn_Click(object sender, RoutedEventArgs e)
+        private void mnWeeksGeneration(object sender, RoutedEventArgs e)
         {
-            List<WorkingShift> shifts = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(mainScheduler.SelectedDate,bdModel), mainScheduler.SelectedDate).GetShifts();
-            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
-            PlanningGeneratorTools.AddWorkingShiftScheduler(shifts, mainScheduler);
+            WeekGenerationWindow weekGenerate = new WeekGenerationWindow(bdModel);
+            weekGenerate.ShowDialog();
         }
     }
 }
