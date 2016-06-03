@@ -48,6 +48,8 @@ namespace EasyPlanner
                 cbDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
             }
             cbDayOfWeek.SelectedIndex = 1;
+            dpFirstDay.SelectedDate = DateTime.Today;
+            dpLastDay.SelectedDate = DateTime.Today;
         }
 
         // <summary>
