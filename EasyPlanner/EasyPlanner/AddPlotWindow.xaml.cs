@@ -97,7 +97,7 @@ namespace EasyPlanner
         /// if the record isnt existing, it will create it and add it
         /// </summary>
         /// <param>None</param>
-        private void btnValider_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (isDateChecked() && areDatesCorrect())
             {
