@@ -44,17 +44,10 @@ namespace EasyPlanner
             cbDayOfWeek.SelectedIndex = 1;
         }
 
-        //Constructor for the "Update Plot Window", setting the previous data in the different fields
-        /*public AddPlotWindow(ScheduleSlot ss)
-        {
-            
-        }*/
-
         public AddPlotWindow(ScheduleSlot ss, bd_easyplannerEntities bd)
         {
 
             InitializeComponent();
-
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
                 cbDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
@@ -62,9 +55,8 @@ namespace EasyPlanner
             cbDayOfWeek.SelectedIndex = 1;
             cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
             cbStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
-            TimeSpan ts = (TimeSpan)ss.endHour;
-            cbEndHourHour.Text = formatHoursMinutes(ts.Hours);
-            cbEndHourMinute.Text = formatHoursMinutes(ts.Minutes);
+            cbEndHourHour.Text = formatHoursMinutes(ss.endHour.Hours);
+            cbEndHourMinute.Text = formatHoursMinutes(ss.endHour.Minutes);
             cbAttendency.Text = ss.minAttendency.ToString();
 
             if (ss.firstDay.ToString() != "")
@@ -85,28 +77,73 @@ namespace EasyPlanner
 
         }
 
-        //Insert data in the database, not necessary to generate an ID
+        // <summary>
+        /// Insert data in the database
+        /// if the record is already existing, it will update it
+        /// if the record isnt existing, it will create it and add it
+        /// </summary>
+        /// <param>None</param>
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
-            current.dayOfWeek = cbDayOfWeek.SelectedIndex;
-            current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
-            current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
-            current.minAttendency = Int32.Parse(cbAttendency.Text);
-            current.firstDay = (DateTime) dpFirstDay.SelectedDate;
-            current.lastDay = (DateTime) dpLastDay.SelectedDate;
-
-            if (!modified)
+            if (isDateChecked() && areDatesCorrect())
             {
+                current.dayOfWeek = cbDayOfWeek.SelectedIndex;
+                current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
+                current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
+                current.minAttendency = Int32.Parse(cbAttendency.Text);
+                current.firstDay = (DateTime)dpFirstDay.SelectedDate;
+                current.lastDay = (DateTime)dpLastDay.SelectedDate;
 
-                bd.ScheduleSlots.Add(current);
+                if (!modified)
+                {
+                    bd.ScheduleSlots.Add(current);
+                }
+
+                bd.SaveChanges();
+                this.Close();
+            } else
+            {
+                MessageBox.Show("Veuillez remplir les champs \"Premier jour\" et \"Dernier Jour\"" +
+                    "\n" + " et vérifier que le premier jour soit avant ou égal au dernier jour");
             }
-
-            bd.SaveChanges();
-            this.Close();
          }
 
-        //Modify format of date and minutes. Add a 0 if h<10 and add 00 if m<10.
-        //Converts data into String format to be displayed
+        /// <summary>
+        /// Check if the first day and last day are set
+        /// (if its not, then it will return false)
+        /// </summary>
+        /// <param>None</param>
+        private Boolean isDateChecked()
+        {
+            Boolean isChecked = false;
+            if (dpFirstDay.SelectedDate != null && dpLastDay.SelectedDate != null)
+            {
+                isChecked = true;
+            }
+            return isChecked;
+        }
+
+        /// <summary>
+        /// Check if the first day is earlier or equals to the last day
+        /// (if its not, then it will return false)
+        /// </summary>
+        /// <param>None</param>
+        private Boolean areDatesCorrect()
+        {
+            Boolean areCorrect = false;
+            if (dpFirstDay.SelectedDate <= dpLastDay.SelectedDate)
+            {
+                areCorrect = true;
+            }
+            return areCorrect;
+        }
+
+
+        /// <summary>
+        /// Modify format of date and minutes. Add a 0 if h<10 and add 00 if m<10
+        /// Converts data into String format to be displayed
+        /// </summary>
+        /// <param name = "t" >a time in INT to convert to string</param>
         private String formatHoursMinutes(int t)
         {
             String s = "";
