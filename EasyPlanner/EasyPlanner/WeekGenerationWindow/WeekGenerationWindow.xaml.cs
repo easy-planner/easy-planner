@@ -1,4 +1,10 @@
-﻿using System;
+﻿/////////////////////////////////////////////////////////////
+// Class responsible : Plinio Sacchetti
+// Last update : 03.06.2016
+// Sprint 5
+// Story(ies) : Generate a scheduler
+/////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +49,10 @@ namespace EasyPlanner
         }
 
         private bd_easyplannerEntities bdModel;
+        /// <summary>
+        /// Construtor for the week generation Windows
+        /// </summary>
+        /// <param name="bd">Entity framework datbase</param>
         public WeekGenerationWindow(bd_easyplannerEntities bd)
         {
             InitializeComponent();
@@ -78,23 +88,6 @@ namespace EasyPlanner
         }
         private void btnGeneration_Click(object sender, RoutedEventArgs e)
         {
-
-            //if (isDateChecked() && areDatesCorrect())
-            //{
-            //    DateTime firstDay = (DateTime)dpFirstDay.SelectedDate;
-            //    PlanningGeneratorTools.ClearWorkingShiftScheduler(weekGenerationScheduler);
-            //    weekGenerationScheduler.SelectedDate = firstDay;
-            //    List<WorkingShift> shifts = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(weekGenerationScheduler.SelectedDate, bdModel), weekGenerationScheduler.SelectedDate).GetShifts();
-            //    //List<WorkingShift> shifts = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(firstDay, bdModel), firstDay).GetShifts();
-            //    PlanningGeneratorTools.AddWorkingShiftScheduler(shifts, weekGenerationScheduler);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Veuillez remplir les champs \"Premier jour\" et \"Dernier Jour\"" +
-            //        "\n" + " et vérifier que le premier jour soit avant ou égal au dernier jour");
-            //}
-
-
             if (isDateChecked() && areDatesCorrect())
             {
                 PlanningGeneratorTools.ClearWorkingShiftScheduler(weekGenerationScheduler);

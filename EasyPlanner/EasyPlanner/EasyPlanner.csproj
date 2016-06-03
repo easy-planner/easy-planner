@@ -107,6 +107,12 @@
     <Compile Include="ScheduleSlot.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="SlotGenerationWindow\AddSlotScheduleWindow.xaml.cs">
+      <DependentUpon>AddSlotScheduleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SlotGenerationWindow\SlotGenerationWindow.xaml.cs">
+      <DependentUpon>SlotGenerationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewPlotsWindow.xaml.cs">
       <DependentUpon>ViewPlotsWindow.xaml</DependentUpon>
     </Compile>
@@ -139,6 +145,14 @@
     <Page Include="ManageUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SlotGenerationWindow\AddSlotScheduleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SlotGenerationWindow\SlotGenerationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ViewPlotsWindow.xaml">
       <SubType>Designer</SubType>

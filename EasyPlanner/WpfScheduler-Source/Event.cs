@@ -17,6 +17,10 @@ namespace WpfScheduler
         public bool AllDay { get; set; }
         public Brush Color { get; set; }
         public long IdShift { get; set; }
+        public int MinAttendency { get; set; }
+        public int DayOfWeek { get; set; }
+        public DateTime FirstDay { get; set; }
+        public DateTime LastDay { get; set; }
 
         public Event()
         {

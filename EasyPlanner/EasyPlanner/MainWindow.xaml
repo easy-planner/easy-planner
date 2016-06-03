@@ -34,6 +34,7 @@
                     <MenuItem Header="_Ajoute qq events à partir de 7 jours" Click="mnAddDatabase"/>
                     <MenuItem Header="_Affiche les slotsShifts de la semaine" Click="mnSlotsShiftsInWeek"/>
                     <MenuItem Header="_Génère semaine de..à.." Click="mnWeeksGeneration"/>
+                    <MenuItem Header="_Génère slotSchedule de..à.." Click="mnSlotsScheduleGeneration"/>
                 </MenuItem>
             </Menu>
             <Button Name="prevBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Précédent"  VerticalAlignment="Center" Click="prevBtn_Click"></Button>

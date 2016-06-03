@@ -239,5 +239,11 @@ namespace EasyPlanner
             WeekGenerationWindow weekGenerate = new WeekGenerationWindow(bdModel);
             weekGenerate.ShowDialog();
         }
+
+        private void mnSlotsScheduleGeneration(object sender, RoutedEventArgs e)
+        {
+            SlotGenerationWindow slotsGenerate = new SlotGenerationWindow(bdModel);
+            slotsGenerate.ShowDialog();
+        }
     }
 }
