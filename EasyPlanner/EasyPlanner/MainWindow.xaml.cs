@@ -28,7 +28,6 @@ namespace EasyPlanner
             InitializeComponent();
             bdModel = new bd_easyplannerEntities();
 
-            //Plinio (PSI)
             mainScheduler.OnEventDoubleClick += MainScheduler_OnEventDoubleClick;
             mainScheduler.OnScheduleDoubleClick += MainScheduler_OnScheduleDoubleClick;
         }
