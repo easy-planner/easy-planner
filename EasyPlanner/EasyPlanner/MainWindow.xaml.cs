@@ -250,6 +250,29 @@ namespace EasyPlanner
             slotsGenerate.NextPrevButtonVisibity = true;
             slotsGenerate.ShowDialog();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cbxPeople.ItemsSource = bdModel.People.ToList();
+            cbxPeople.SelectedValuePath = "idPerson";
+        }
+
+        private void cbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbxPeople.SelectedIndex != -1)
+            {
+                PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+                List<WorkingShift> personnalWorkingShifts = bdModel.WorkingShifts.Where(ws => ws.idPerson == (int)cbxPeople.SelectedValue).ToList();
+                PlanningGeneratorTools.AddWorkingShiftScheduler(personnalWorkingShifts, mainScheduler);
+            }
+        }
+
+        private void btnShowAllWorkingShifts_Click(object sender, RoutedEventArgs e)
+        {
+            cbxPeople.SelectedIndex = -1; //set to null
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+            PlanningGeneratorTools.AddWorkingShiftScheduler(bdModel.WorkingShifts.ToList(), mainScheduler);
+        }
     }
 
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
         Title="EasyPlanner" Height="800" Width="800"
-        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler" Icon="images/EasyplannerLogo.ico" >
+        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler" Icon="images/EasyplannerLogo.ico" Loaded="Window_Loaded" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -42,6 +42,20 @@
             </Menu>
             <Button Name="prevBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&lt;&lt;"  VerticalAlignment="Center" Click="prevBtn_Click"></Button>
             <Button Name="nextBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&gt;&gt;"  VerticalAlignment="Center" Click="nextBtn_Click"></Button>
+            <Button Name="btnShowAllWorkingShifts" Margin="10,11"  DockPanel.Dock="Right" HorizontalAlignment="Left" Content="Tous"  VerticalAlignment="Center" Click="btnShowAllWorkingShifts_Click" Width="46"></Button>
+            <ComboBox DockPanel.Dock="Right" Name="cbxPeople" Margin="300,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="346" SelectionChanged="cbxPeople_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                        <Run Text="{Binding firstName}" />
+                        <Run Text=" " />
+                        <Run FontWeight="Bold" Text="{Binding name}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding idPerson}" />
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </DockPanel>
         <my:Scheduler
             Grid.Row="1"
