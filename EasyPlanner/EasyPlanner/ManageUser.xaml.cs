@@ -37,10 +37,7 @@ namespace EasyPlanner
 
         }
 
-        private void dgPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            btnDelete.IsEnabled = true;
-        }
+
 
         private void dgPeople_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
