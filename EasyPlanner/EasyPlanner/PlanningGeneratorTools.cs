@@ -82,10 +82,7 @@ namespace EasyPlanner
         /// <param name="bd">database</param>
         public static void RemoveWeekWorkingShiftScheduler(DateTime d, Scheduler scheduler)
         {
-            // lastMonday is always the Monday before nextSunday.
-            // When today is a Sunday, lastMonday will be tomorrow.     
-            int offset = d.DayOfWeek - DayOfWeek.Monday;
-            DateTime lastMonday = d.AddDays(-offset);
+            DateTime lastMonday = PlanningGeneratorTools.GetMondayBefore(d);
             DateTime nextMonday = lastMonday.AddDays(7);
 
             List<Event> eventsToRemove = scheduler.Events.Where(ev => ev.Start >= lastMonday && ev.Start <= nextMonday).ToList();
@@ -135,14 +132,24 @@ namespace EasyPlanner
         /// <returns>List of ScheduleSlot for a week</returns>
         public static List<ScheduleSlot> GetWeekScheduleSlots(DateTime d, bd_easyplannerEntities bd)
         {
-            // lastMonday is always the Monday before nextSunday.
-            // When today is a Sunday, lastMonday will be tomorrow.     
-            int offset = d.DayOfWeek - DayOfWeek.Monday;
-            DateTime lastMonday = d.AddDays(-offset);
-            DateTime nextSunday = lastMonday.AddDays(6);
+            DateTime lastMonday = GetMondayBefore(d);
+            DateTime nextSunday = GetSundayAfter(d);
 
             // return all slot between monday and sunday
             return bd.ScheduleSlots.Where(s => s.lastDay >= lastMonday && s.firstDay <= nextSunday).ToList();
+        }
+
+        public static DateTime GetMondayBefore(DateTime d)
+        {
+            // lastMonday is always the Monday before nextSunday.    
+            int offset = d.DayOfWeek - DayOfWeek.Monday;
+            return d.AddDays(-offset);
+        }
+
+        public static DateTime GetSundayAfter(DateTime d)
+        {
+            // When today is a Sunday, lastMonday will be tomorrow.     
+            return GetMondayBefore(d).AddDays(6);
         }
     }
 }

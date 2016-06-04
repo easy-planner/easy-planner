@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="Ajout d'un utilisateur" Height="404.625" Width="356">
+        Title="Ajout d'un utilisateur" Height="404.625" Width="356" Icon="images/EasyplannerLogo.ico">
     <Grid RenderTransformOrigin="0.641,0.489">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="93*"/>

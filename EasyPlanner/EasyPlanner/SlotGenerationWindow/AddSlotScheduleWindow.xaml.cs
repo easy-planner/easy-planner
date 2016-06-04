@@ -80,24 +80,10 @@ namespace EasyPlanner
             cbEndHourHourSlot.Text = ss.End.ToString("HH"); 
             cbEndHourMinuteSlot.Text = ss.End.ToString("mm");
             cbAttendencySlot.Text = ss.MinAttendency.ToString();
-            
 
-            //if (ss.firstDay.ToString() != "")
-            //{
-            //    DateTime dt = (DateTime)ss.firstDay;
-            //    dpFirstDaySlot.SelectedDate = dt;
-            //}
-            //if (ss.lastDay.ToString() != "")
-            //{
-            //    DateTime dt = (DateTime)ss.lastDay;
-            //    dpLastDaySlot.SelectedDate = dt;
-            //}
-
-            //this.bd = bd;
             this.current = ss;
             idBckCurrent = ss.Id;
             modified = true;
-
         }
 
         // <summary>
@@ -108,13 +94,12 @@ namespace EasyPlanner
         /// <param>None</param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //if (isDateChecked() && areDatesCorrect())
-            //{
             if (modified)
             {
                 scheduler.DeleteEvent(idBckCurrent);
                 current.Start = new DateTime(current.Start.Year, current.Start.Month, current.Start.Day, Int32.Parse(cbStartHourHourSlot.Text), Int32.Parse(cbStartHourMinuteSlot.Text), 0);
                 current.End = new DateTime(current.End.Year, current.End.Month, current.End.Day, Int32.Parse(cbEndHourHourSlot.Text), Int32.Parse(cbEndHourMinuteSlot.Text), 0);
+                current.Color = new SolidColorBrush(Colors.Coral);
             }
             else
             {
@@ -122,62 +107,16 @@ namespace EasyPlanner
                 current.Start = current.Start.AddMinutes(Int32.Parse(cbStartHourMinuteSlot.Text));
                 current.End = current.End.AddHours(Int32.Parse(cbEndHourHourSlot.Text));
                 current.End = current.End.AddMinutes(Int32.Parse(cbEndHourMinuteSlot.Text));
+                current.Color = new SolidColorBrush(Colors.OrangeRed);
             }
             current.DayOfWeek = cbDayOfWeekSlot.SelectedIndex;
-
             current.MinAttendency = Int32.Parse(cbAttendencySlot.Text);
 
-            current.Color = new SolidColorBrush(Colors.Azure);
             current.Subject = "Date départ : " + current.Start.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
-                                "Date de fin : " + current.Start.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
+                                "Date de fin : " + current.End.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
                                 "Mininum : " + current.MinAttendency.ToString();
-
-            //if (modified)
-            //{
-            //    scheduler.DeleteEvent(idBckCurrent);
-            //    scheduler.AddEvent(current);
-
-            //}
-            //else
             scheduler.AddEvent(current);
-                this.Close();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Veuillez remplir les champs \"Premier jour\" et \"Dernier Jour\"" +
-            //        "\n" + " et vérifier que le premier jour soit avant ou égal au dernier jour");
-            //}
+            this.Close();
          }
-
-        ///// <summary>
-        ///// Check if the first day and last day are set
-        ///// (if its not, then it will return false)
-        ///// </summary>
-        ///// <param>None</param>
-        //private Boolean isDateChecked()
-        //{
-        //    Boolean isChecked = false;
-        //    if (dpFirstDaySlot.SelectedDate != null && dpLastDaySlot.SelectedDate != null)
-        //    {
-        //        isChecked = true;
-        //    }
-        //    return isChecked;
-        //}
-
-        ///// <summary>
-        ///// Check if the first day is earlier or equals to the last day
-        ///// (if its not, then it will return false)
-        ///// </summary>
-        ///// <param>None</param>
-        //private Boolean areDatesCorrect()
-        //{
-        //    Boolean areCorrect = false;
-            
-        //    if (dpFirstDaySlot.SelectedDate <= dpLastDaySlot.SelectedDate)
-        //    {
-        //        areCorrect = true;
-        //    }
-        //    return areCorrect;
-        //}
     }
 }

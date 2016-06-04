@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
         Title="Génération de semaine(s) de travail" Height="800" Width="800"
-        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler">
+        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler" Icon="/EasyPlanner;component/images/EasyplannerLogo.ico" Loaded="Window_Loaded" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -21,14 +21,14 @@
                 </MenuItem>
             </Menu>
 -->
-            <Button Name="btnPrevWeekGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Précédent"  VerticalAlignment="Center" Click="btnPrevWeekGeneration_Click"></Button>
-            <Button Name="btnNexWeekGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Suivant"  VerticalAlignment="Center" Click="btnNextWeekGeneration_Click"></Button>
-            <Label Content=" de " Margin="10,12,0,22" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="28" Height="26"></Label>
+            <Button Name="btnPrevWeekGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&lt;&lt;"  VerticalAlignment="Center" Click="btnPrevWeekGeneration_Click"></Button>
+            <Button Name="btnNexWeekGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&gt;&gt;"  VerticalAlignment="Center" Click="btnNextWeekGeneration_Click"></Button>
+            <Label Content=" de " Margin="10,12,0,18" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Bottom" Width="28" Height="30"></Label>
             <DatePicker x:Name="dpFirstDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
             <Label Content=" à " Margin="10,12,0,22" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="22" Height="26"></Label>
             <DatePicker x:Name="dpLastDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
             <Button Name="btnGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Générer simulation"  VerticalAlignment="Center" Click="btnGeneration_Click"></Button>
-
+            <Button Name="btnSaveInDB" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Enregistrer dans la BD"  VerticalAlignment="Center" Click="btnSaveInDB_Click"></Button>
         </DockPanel>
         <my:Scheduler
             Grid.Row="1"
