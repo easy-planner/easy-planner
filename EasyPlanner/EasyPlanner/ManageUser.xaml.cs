@@ -30,14 +30,6 @@ namespace EasyPlanner
             dgPeople.ItemsSource = bdModel.People.ToList();
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            bdModel.People.Remove((Person) dgPeople.SelectedItem);
-            bdModel.SaveChanges();
-
-        }
-
-
 
         private void dgPeople_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -46,9 +38,15 @@ namespace EasyPlanner
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnModify_Click(object sender, RoutedEventArgs e)
         {
-   
+            AddUser auw = new AddUser((Person)(dgPeople.SelectedItem), bdModel);
+            auw.ShowDialog();
+        }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            bdModel.People.Remove((Person)dgPeople.SelectedItem);
+            bdModel.SaveChanges();
 
         }
     }
