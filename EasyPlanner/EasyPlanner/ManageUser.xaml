@@ -15,31 +15,30 @@
             <ColumnDefinition Width="226*"/>
             <ColumnDefinition Width="67*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dgPeople" HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto"  AutoGenerateColumns="False"  CanUserAddRows="False" ColumnWidth="*" Grid.ColumnSpan="2" Margin="10,0,-19.667,0" RenderTransformOrigin="0.754,1.712" SelectionChanged="dgPeople_SelectionChanged" MouseDoubleClick="dgPeople_MouseDoubleClick">
+        <DataGrid x:Name="dgPeople" HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto"  AutoGenerateColumns="False"  CanUserAddRows="False" ColumnWidth="*" Grid.ColumnSpan="2" Margin="10,0,-19.667,0" RenderTransformOrigin="0.754,1.712" MouseDoubleClick="dgPeople_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="dgrId" Binding="{Binding idPerson}"  Header="Id"  IsReadOnly="True" />
-                <DataGridTextColumn x:Name="dgrFirstName"  Binding="{Binding firstName}" Header="FirstName" IsReadOnly="True" />
-                <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="LastName" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrFirstName"  Binding="{Binding firstName}" Header="Prénom" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrLastName"  Binding="{Binding name}" Header="Nom" IsReadOnly="True" />
                 <DataGridTextColumn x:Name="dgrNumberAVS"  Binding="{Binding numberAVS}" Header="Numéro AVS" IsReadOnly="True" />
-                <DataGridTextColumn x:Name="dgrOccupancyRate"  Binding="{Binding occupancyRate}" Header="occupancyRate" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="dgrOccupancyRate"  Binding="{Binding occupancyRate}" Header="Taux d'occupation" IsReadOnly="True" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="btnRemove" Content="Effacer" Click="Button_Click"/>
+                            <Button Name="btnRemove" Content="Effacer" Click="btnDelete_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="btnUpdate" Content="Mettre à jour" Click="Button_Click"/>
+                            <Button Name="btnUpdate" Content="Modifier" Click="btnModify_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
             
         </DataGrid>
-        <Button x:Name="btnDelete" Content="Supprimer" HorizontalAlignment="Left" Margin="512,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnDelete_Click"/>
 
     </Grid>
 </Window>
