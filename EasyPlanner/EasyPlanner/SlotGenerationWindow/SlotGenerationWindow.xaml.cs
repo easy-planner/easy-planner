@@ -89,8 +89,6 @@ namespace EasyPlanner
         {
             if (isDateChecked() && areDatesCorrect())
             {
-                //PlanningGeneratorTools.ClearWorkingShiftScheduler(slotGenerationScheduler);
-
                 //gets first and last day
                 DateTime firstDaySelection = (DateTime)dpFirstDay.SelectedDate;
                 DateTime lastDaySelection = (DateTime)dpLastDay.SelectedDate;
