@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -198,21 +199,6 @@ namespace EasyPlanner
             PlanningGeneratorTools.PersistWorkingShiftDataBase(ws, bdModel);
         }
 
-        private void removeDatabaseBtn_Click(object sender, RoutedEventArgs e)
-        {
-            List<WorkingShift> ws = new List<WorkingShift>();
-            for (int i = int.Parse(removeFirstTbx.Text); i <= int.Parse(removeLastTbx.Text); i++)
-            {
-                ws.Add(new WorkingShift
-                {
-                    idShift = i,
-                });
-            }
-
-            PlanningGeneratorTools.RemoveWorkingShiftDataBase(ws, bdModel);
-            PlanningGeneratorTools.RemoveWorkingShiftScheduler(ws, mainScheduler);
-        }
-
         private void mnSlotsShiftsInWeek(object sender, RoutedEventArgs e)
         {
             DateTime d = mainScheduler.SelectedDate;
@@ -233,16 +219,60 @@ namespace EasyPlanner
             MessageBox.Show(s);
         }
 
+        /// <summary>
+        /// Open a new window for the workingshifts generation.
+        /// When it is finished, all workinshifts are in database.
+        /// </summary>
         private void mnWeeksGeneration(object sender, RoutedEventArgs e)
         {
             WeekGenerationWindow weekGenerate = new WeekGenerationWindow(bdModel);
             weekGenerate.ShowDialog();
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+            updateEvents();
         }
-
-        private void mnSlotsScheduleGeneration(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Open the window to genrerate workingShifts.
+        /// </summary>
+        private void mnScheduleSlotsGeneration(object sender, RoutedEventArgs e)
         {
             SlotGenerationWindow slotsGenerate = new SlotGenerationWindow(bdModel);
             slotsGenerate.ShowDialog();
         }
+        /// <summary>
+        /// Open the windows to manage existing ScheduleSlot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnScheduleSlotsInScheduler(object sender, RoutedEventArgs e)
+        {
+            SlotGenerationWindow slotsGenerate = new SlotGenerationWindow(bdModel);
+            slotsGenerate.LoadScheduleSlotFromDatabase();
+            slotsGenerate.NextPrevButtonVisibity = true;
+            slotsGenerate.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cbxPeople.ItemsSource = bdModel.People.ToList();
+            cbxPeople.SelectedValuePath = "idPerson";
+        }
+
+        private void cbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbxPeople.SelectedIndex != -1)
+            {
+                PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+                List<WorkingShift> personnalWorkingShifts = bdModel.WorkingShifts.Where(ws => ws.idPerson == (int)cbxPeople.SelectedValue).ToList();
+                PlanningGeneratorTools.AddWorkingShiftScheduler(personnalWorkingShifts, mainScheduler);
+            }
+        }
+
+        private void btnShowAllWorkingShifts_Click(object sender, RoutedEventArgs e)
+        {
+            cbxPeople.SelectedIndex = -1; //set to null
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+            PlanningGeneratorTools.AddWorkingShiftScheduler(bdModel.WorkingShifts.ToList(), mainScheduler);
+        }
     }
+
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="Vue des slots" Height="507" Width="1030.35">
+        Title="Vue des slots" Height="507" Width="1030.35" Icon="images/EasyplannerLogo.ico">
     <Grid>
         <DataGrid x:Name="dg" CanUserDeleteRows="False"  HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="722" AutoGenerateColumns="False">
             <DataGrid.Columns>

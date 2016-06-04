@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800"
-        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler">
+        Title="EasyPlanner" Height="800" Width="800"
+        xmlns:my="clr-namespace:WpfScheduler;assembly=WpfScheduler" Icon="images/EasyplannerLogo.ico" Loaded="Window_Loaded" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -24,24 +24,38 @@
                     <MenuItem Header="_Ajouter" Click="mnAddUser"/>
                 </MenuItem>
                 <MenuItem Header="_Plages horaires">
+                    <MenuItem Header="_Editer vue semaine" Click="mnScheduleSlotsInScheduler"/>
+                    <MenuItem Header="_Ajouter de .. à .." Click="mnScheduleSlotsGeneration"/>
                     <MenuItem Header="_Lister" Click="mnViewPlots"/>
                     <MenuItem Header="_Ajouter" Click="mnAddPlot"/>
+                </MenuItem>
+                <MenuItem Header="_Administration des horaires employés">
+                    <MenuItem Header="_Génère semaine de..à.." Click="mnWeeksGeneration"/>
                 </MenuItem>
                 <MenuItem Header="_TestPlinio">
                     <MenuItem Header="_Ajoute event" Click="mnAddEvent"/>
                     <MenuItem Header="_Efface semaine event" Click="mnClearWeekEvent"/>
                     <MenuItem Header="_Efface tous les event" Click="mnClearEvent"/>
                     <MenuItem Header="_Ajoute qq events à partir de 7 jours" Click="mnAddDatabase"/>
-                    <MenuItem Header="_Affiche les slotsShifts de la semaine" Click="mnSlotsShiftsInWeek"/>
-                    <MenuItem Header="_Génère semaine de..à.." Click="mnWeeksGeneration"/>
-                    <MenuItem Header="_Génère slotSchedule de..à.." Click="mnSlotsScheduleGeneration"/>
+                    <MenuItem Header="_Affiche les slotsSchedule de la semaine en cours" Click="mnSlotsShiftsInWeek"/>
                 </MenuItem>
             </Menu>
-            <Button Name="prevBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Précédent"  VerticalAlignment="Center" Click="prevBtn_Click"></Button>
-            <Button Name="nextBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Suivant"  VerticalAlignment="Center" Click="nextBtn_Click"></Button>
-            <Button Name="removeDatabaseBtn" Margin="10,11,0,11" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Remove database"  VerticalAlignment="Center" Click="removeDatabaseBtn_Click" Width="104"></Button>
-            <TextBox Name="removeFirstTbx" Height="20" Margin="0,11,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" DockPanel.Dock="Left" Text="1er" VerticalAlignment="Top" Width="28"/>
-            <TextBox Name="removeLastTbx" Height="20" Margin="0,11,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" DockPanel.Dock="Left" Text="dernier" VerticalAlignment="Top" Width="27"/>
+            <Button Name="prevBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&lt;&lt;"  VerticalAlignment="Center" Click="prevBtn_Click"></Button>
+            <Button Name="nextBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&gt;&gt;"  VerticalAlignment="Center" Click="nextBtn_Click"></Button>
+            <Button Name="btnShowAllWorkingShifts" Margin="10,11"  DockPanel.Dock="Right" HorizontalAlignment="Left" Content="Tous"  VerticalAlignment="Center" Click="btnShowAllWorkingShifts_Click" Width="46"></Button>
+            <ComboBox DockPanel.Dock="Right" Name="cbxPeople" Margin="300,10,10,10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="346" SelectionChanged="cbxPeople_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                        <Run Text="{Binding firstName}" />
+                        <Run Text=" " />
+                        <Run FontWeight="Bold" Text="{Binding name}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding idPerson}" />
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </DockPanel>
         <my:Scheduler
             Grid.Row="1"

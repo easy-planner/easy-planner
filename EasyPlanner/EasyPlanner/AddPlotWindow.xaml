@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EasyPlanner"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="EasyPlanner.AddPlotWindow"
         mc:Ignorable="d"
-        Title="Ajout d'un slot" Height="382.879" Width="370.866" BorderThickness="1">
+        Title="Ajout d'un slot" Height="382.879" Width="370.866" BorderThickness="1" Icon="images/EasyplannerLogo.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
