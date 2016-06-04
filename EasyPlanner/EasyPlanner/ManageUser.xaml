@@ -39,7 +39,6 @@
             </DataGrid.Columns>
             
         </DataGrid>
-        <Button x:Name="btnDelete" Content="Supprimer" HorizontalAlignment="Left" Margin="512,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="btnDelete_Click"/>
 
     </Grid>
 </Window>

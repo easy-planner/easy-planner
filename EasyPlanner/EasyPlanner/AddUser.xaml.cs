@@ -44,6 +44,9 @@ namespace EasyPlanner
             txtavs.Text = current.numberAVS;
             txt_occupencyrate.Text = current.occupancyRate.ToString();
             txtDescription.Text = current.description;
+            cob_role.ItemsSource = bdModel.Roles.ToList();
+            cob_role.DisplayMemberPath = "roleName";
+            cob_role.SelectedValuePath = "idRole";
             cob_role.SelectedValue = current.idRole;
             btn_save.Content = "Modifier";
             
