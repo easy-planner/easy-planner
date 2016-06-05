@@ -138,6 +138,7 @@ namespace EasyPlanner
             // return all slot between monday and sunday
             return bd.ScheduleSlots.Where(s => s.lastDay >= lastMonday && s.firstDay <= nextSunday).ToList();
         }
+
         public static List<AbsencePreference> GetAbsPreferenceSlots(DateTime d, bd_easyplannerEntities bd)
         {
             DateTime lastMonday = GetMondayBefore(d);
