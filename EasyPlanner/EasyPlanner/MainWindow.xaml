@@ -31,6 +31,7 @@
                 </MenuItem>
                 <MenuItem Header="_Administration des horaires employés">
                     <MenuItem Header="_Génère semaine de..à.." Click="mnWeeksGeneration"/>
+                    <MenuItem Header="_Editer des plages des préférences des absences des employés" Click="mnScheduleAbsencePreference"/>
                     <MenuItem Header="_Supprime toutes les plages horaires" Click="mnWorkingShiftsRemove"/>
                 </MenuItem>
             </Menu>

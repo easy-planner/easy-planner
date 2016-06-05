@@ -21,7 +21,7 @@
             <PropertyRef Name="idTimeSlot" />
           </Key>
           <Property Name="idTimeSlot" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="dayOfWeek" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="dayOfWeek" Type="int" Nullable="false" />
           <Property Name="startHour" Type="time" Precision="0" Nullable="false" />
           <Property Name="endHour" Type="time" Precision="0" Nullable="false" />
           <Property Name="firstDay" Type="date" Nullable="false" />
@@ -164,7 +164,7 @@
             <PropertyRef Name="idTimeSlot" />
           </Key>
           <Property Name="idTimeSlot" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dayOfWeek" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dayOfWeek" Type="Int32" Nullable="false" />
           <Property Name="startHour" Type="Time" Nullable="false" />
           <Property Name="endHour" Type="Time" Nullable="false" />
           <Property Name="firstDay" Type="DateTime" Nullable="false" />

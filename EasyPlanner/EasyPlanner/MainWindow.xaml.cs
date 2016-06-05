@@ -287,5 +287,13 @@ namespace EasyPlanner
             cbxPeople.SelectedIndex = -1;
             updateEvents();
         }
+
+        private void mnScheduleAbsencePreference(object sender, RoutedEventArgs e)
+        {
+            AbsencePreferenceGenerationWindow absPrefSlot = new AbsencePreferenceGenerationWindow(bdModel);
+            absPrefSlot.LoadScheduleSlotFromDatabase();
+            absPrefSlot.NextPrevButtonVisibity = false;
+            absPrefSlot.ShowDialog();
+        }
     }
 }

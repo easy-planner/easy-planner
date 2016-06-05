@@ -34,6 +34,7 @@ namespace EasyPlanner
         private Event current;
         private Boolean modified;
         private Guid idBckCurrent;
+        
 
         /// create a ScheduleSlot
         /// Populate an enum with days of week
@@ -80,8 +81,16 @@ namespace EasyPlanner
             cbEndHourHourSlot.Text = ss.End.ToString("HH"); 
             cbEndHourMinuteSlot.Text = ss.End.ToString("mm");
             cbAttendencySlot.Text = ss.MinAttendency.ToString();
+            dpFirstDay.SelectedDate = ss.FirstDay;
+            dpLastDay.SelectedDate = ss.LastDay;
 
             this.current = ss;
+            //Mise à 0 des heures
+            current.Start=current.Start.AddHours(-current.Start.Hour);
+            current.Start = current.Start.AddMinutes(-current.Start.Minute);
+            current.End = current.End.AddHours(-current.End.Hour);
+            current.End = current.End.AddMinutes(-current.End.Minute);
+
             idBckCurrent = ss.Id;
             modified = true;
         }
@@ -94,29 +103,69 @@ namespace EasyPlanner
         /// <param>None</param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (modified)
+            if (isDateChecked() && areDatesCorrect())
             {
-                scheduler.DeleteEvent(idBckCurrent);
-                current.Start = new DateTime(current.Start.Year, current.Start.Month, current.Start.Day, Int32.Parse(cbStartHourHourSlot.Text), Int32.Parse(cbStartHourMinuteSlot.Text), 0);
-                current.End = new DateTime(current.End.Year, current.End.Month, current.End.Day, Int32.Parse(cbEndHourHourSlot.Text), Int32.Parse(cbEndHourMinuteSlot.Text), 0);
-                current.Color = new SolidColorBrush(Colors.Coral);
-            }
-            else
-            {
+                current.DayOfWeek = cbDayOfWeekSlot.SelectedIndex;
+                current.MinAttendency = Int32.Parse(cbAttendencySlot.Text);
+                current.FirstDay = (DateTime)dpFirstDay.SelectedDate;
+                current.LastDay = (DateTime)dpLastDay.SelectedDate;
+
                 current.Start = current.Start.AddHours(Int32.Parse(cbStartHourHourSlot.Text));
                 current.Start = current.Start.AddMinutes(Int32.Parse(cbStartHourMinuteSlot.Text));
                 current.End = current.End.AddHours(Int32.Parse(cbEndHourHourSlot.Text));
                 current.End = current.End.AddMinutes(Int32.Parse(cbEndHourMinuteSlot.Text));
-                current.Color = new SolidColorBrush(Colors.OrangeRed);
-            }
-            current.DayOfWeek = cbDayOfWeekSlot.SelectedIndex;
-            current.MinAttendency = Int32.Parse(cbAttendencySlot.Text);
 
-            current.Subject = "Date départ : " + current.Start.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
-                                "Date de fin : " + current.End.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
-                                "Mininum : " + current.MinAttendency.ToString();
-            scheduler.AddEvent(current);
-            this.Close();
-         }
+                if (modified)
+                {
+                    scheduler.DeleteEvent(idBckCurrent);
+                    current.Color = new SolidColorBrush(Colors.Coral);
+                }
+                else
+                {
+                    current.Color = new SolidColorBrush(Colors.OrangeRed);
+                }
+
+
+                current.Subject = "Date départ : " + current.FirstDay.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
+                                    "Date de fin : " + current.LastDay.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
+                                    "Mininum : " + current.MinAttendency.ToString();
+                scheduler.AddEvent(current);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir les champs \"Premier jour\" et \"Dernier Jour\"" +
+                       "\n" + " et vérifier que le premier jour soit avant ou égal au dernier jour");
+            }
+        }
+
+
+        private void dpFirstDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //dpLastDay.SelectedDate = dpFirstDay.SelectedDate;
+        }
+
+        //Faire une classe statique avec les méthodes ci-dessous car 
+        // elles sont utilisées à plusieurs endroits du projet
+        private Boolean isDateChecked()
+        {
+            Boolean isChecked = false;
+
+            if (dpFirstDay.SelectedDate != null && dpLastDay.SelectedDate != null)
+            {
+                isChecked = true;
+            }
+            return isChecked;
+        }
+
+        private Boolean areDatesCorrect()
+        {
+            Boolean areCorrect = false;
+            if (dpFirstDay.SelectedDate <= dpLastDay.SelectedDate)
+            {
+                areCorrect = true;
+            }
+            return areCorrect;
+        }
     }
 }

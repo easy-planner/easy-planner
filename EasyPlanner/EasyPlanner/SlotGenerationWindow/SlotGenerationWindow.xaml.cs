@@ -26,29 +26,6 @@ namespace EasyPlanner
     /// </summary>
     public partial class SlotGenerationWindow : Window
     {
-        //Faire une classe statique avec les méthodes ci-dessous car 
-        // elles sont utilisées à plusieurs endroits du projet
-        private Boolean isDateChecked()
-        {
-            Boolean isChecked = false;
-            
-            if (dpFirstDay.SelectedDate != null && dpLastDay.SelectedDate != null)
-            {
-                isChecked = true;
-            }
-            return isChecked;
-        }
-
-        private Boolean areDatesCorrect()
-        {
-            Boolean areCorrect = false;
-            if (dpFirstDay.SelectedDate <= dpLastDay.SelectedDate)
-            {
-                areCorrect = true;
-            }
-            return areCorrect;
-        }
-
         private bd_easyplannerEntities bdModel;
         public Boolean NextPrevButtonVisibity { get; set; }
 
@@ -76,6 +53,7 @@ namespace EasyPlanner
             slotGenerationScheduler.OnScheduleDoubleClick += slotGenerationScheduler_OnScheduleDoubleClick;
         }
 
+
         public void LoadScheduleSlotFromDatabase()
         {
             //Clear events in the current scheduler
@@ -90,8 +68,12 @@ namespace EasyPlanner
             else
                 lastSunday = PlanningGeneratorTools.GetSundayAfter(d).AddDays(-7);
 
-            //Get all the current week's scheduleSlots
             List<ScheduleSlot> scheduleSlotsWeek;
+
+            //Get all the current week's scheduleSlots
+            scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
+
+
             scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
 
             //Add the week's slot in the scheduler
@@ -122,6 +104,7 @@ namespace EasyPlanner
         private void slotGenerationScheduler_OnScheduleDoubleClick(object sender, DateTime e)
         {
             AddSlotScheduleWindow slotScheduleWin = new AddSlotScheduleWindow(e, slotGenerationScheduler);
+            slotScheduleWin.lblPerson.Content = "";
             slotScheduleWin.ShowDialog();
         }
 
@@ -131,6 +114,7 @@ namespace EasyPlanner
         private void slotGenerationScheduler_OnEventDoubleClick(object sender, Event e)
         {
             AddSlotScheduleWindow slotScheduleWin = new AddSlotScheduleWindow(e, slotGenerationScheduler);
+            slotScheduleWin.lblPerson.Content = "";
             slotScheduleWin.ShowDialog();
         }
 
@@ -139,55 +123,40 @@ namespace EasyPlanner
         /// </summary>
         private void btnSlotScheduleGeneration_Click(object sender, RoutedEventArgs e)
         {
-            if (isDateChecked() && areDatesCorrect())
+            //Create a ScheduleSlot foreach event in the scheduler
+            foreach (Event ev in slotGenerationScheduler.Events)
             {
-                //gets first and last day
-                DateTime firstDaySelection = (DateTime)dpFirstDay.SelectedDate;
-                DateTime lastDaySelection = (DateTime)dpLastDay.SelectedDate;
-
-                //Create a ScheduleSlot foreach event in the scheduler
-                foreach (Event ev in slotGenerationScheduler.Events)
+                if(ev.IdShift == 0) //it's a new slot
                 {
-                    if(ev.IdShift == 0) //it's a new slot
+                    bdModel.ScheduleSlots.Add(new ScheduleSlot()
                     {
-                        bdModel.ScheduleSlots.Add(new ScheduleSlot()
-                        {
-                            dayOfWeek = ev.DayOfWeek,
-                            firstDay = firstDaySelection,
-                            lastDay = lastDaySelection,
-                            minAttendency = ev.MinAttendency,
-                            startHour = new TimeSpan(ev.Start.Hour, ev.Start.Minute, 0),
-                            endHour = new TimeSpan(ev.End.Hour, ev.End.Minute, 0),
-                        });
-                    }
-                    else //otherwise update it
-                    {
-                        ScheduleSlot ss = bdModel.ScheduleSlots.Single(s => s.idTimeSlot == ev.IdShift);
-                        ss.dayOfWeek = ev.DayOfWeek;
-                        ss.lastDay = ev.LastDay;
-                        ss.firstDay = ev.FirstDay;
-                        ss.minAttendency = ev.MinAttendency;
-                        ss.startHour = new TimeSpan(ev.Start.Hour, ev.Start.Minute, 0);
-                        ss.endHour = new TimeSpan(ev.End.Hour, ev.End.Minute, 0);
-                    }
-
+                        dayOfWeek = ev.DayOfWeek,
+                        firstDay = ev.FirstDay,
+                        lastDay = ev.LastDay,
+                        minAttendency = ev.MinAttendency,
+                        startHour = new TimeSpan(ev.Start.Hour, ev.Start.Minute, 0),
+                        endHour = new TimeSpan(ev.End.Hour, ev.End.Minute, 0),
+                    });
                 }
-                bdModel.SaveChanges();
-                MessageBox.Show("Traitement terminé", "Plages horaires sauvegardées dans la BD");
-                this.Close();
+                else //otherwise update it
+                {
+                    ScheduleSlot ss = bdModel.ScheduleSlots.Single(s => s.idTimeSlot == ev.IdShift);
+                    ss.dayOfWeek = ev.DayOfWeek;
+                    ss.lastDay = ev.LastDay;
+                    ss.firstDay = ev.FirstDay;
+                    ss.minAttendency = ev.MinAttendency;
+                    ss.startHour = new TimeSpan(ev.Start.Hour, ev.Start.Minute, 0);
+                    ss.endHour = new TimeSpan(ev.End.Hour, ev.End.Minute, 0);
+                }
+
             }
-            else
-            {
-                MessageBox.Show("Veuillez remplir les champs \"Premier jour\" et \"Dernier Jour\"" +
-                    "\n" + " et vérifier que le premier jour soit avant ou égal au dernier jour");
-            }
+            bdModel.SaveChanges();
+            MessageBox.Show("Traitement terminé", "Plages horaires sauvegardées dans la BD");
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dpFirstDay.SelectedDate = PlanningGeneratorTools.GetMondayBefore(DateTime.Today);
-            dpLastDay.SelectedDate = PlanningGeneratorTools.GetSundayAfter(DateTime.Today);
-
             if (NextPrevButtonVisibity)
             {
                 this.btnNext.Visibility = Visibility.Visible;
@@ -198,22 +167,13 @@ namespace EasyPlanner
         private void btnPrev_Click(object sender, RoutedEventArgs e)
         {
             this.slotGenerationScheduler.PrevPage();
-            dpFirstDay.SelectedDate = ((DateTime)dpFirstDay.SelectedDate).AddDays(-7);
-            dpLastDay.SelectedDate = ((DateTime)dpLastDay.SelectedDate).AddDays(-7);
             LoadScheduleSlotFromDatabase();
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             this.slotGenerationScheduler.NextPage();
-            dpFirstDay.SelectedDate = ((DateTime)dpFirstDay.SelectedDate).AddDays(7);
-            dpLastDay.SelectedDate = ((DateTime)dpLastDay.SelectedDate).AddDays(7);
             LoadScheduleSlotFromDatabase();
-        }
-
-        private void dpFirstDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            dpLastDay.SelectedDate = dpFirstDay.SelectedDate;
         }
     }
 }

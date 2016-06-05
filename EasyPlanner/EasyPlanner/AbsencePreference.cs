@@ -15,7 +15,7 @@ namespace EasyPlanner
     public partial class AbsencePreference
     {
         public int idTimeSlot { get; set; }
-        public string dayOfWeek { get; set; }
+        public int dayOfWeek { get; set; }
         public System.TimeSpan startHour { get; set; }
         public System.TimeSpan endHour { get; set; }
         public System.DateTime firstDay { get; set; }

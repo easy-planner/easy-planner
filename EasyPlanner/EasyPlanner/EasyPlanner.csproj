@@ -104,6 +104,9 @@
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
     <Compile Include="PlanningGeneratorTools.cs" />
+    <Compile Include="AbsencePreferenceGenerationWindow\AbsencePreferenceGenerationWindow.xaml.cs">
+      <DependentUpon>AbsencePreferenceGenerationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
     <Page Include="ManageUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AbsencePreferenceGenerationWindow\AbsencePreferenceGenerationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SlotGenerationWindow\AddSlotScheduleWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +228,8 @@
   <ItemGroup>
     <Resource Include="images\EasyplannerLogoEP.ico" />
     <Resource Include="images\EasyplannerLogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ModelEF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelEF.edmx</DependentUpon>
@@ -232,7 +241,6 @@
       <LastGenOutput>ModelEF.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
