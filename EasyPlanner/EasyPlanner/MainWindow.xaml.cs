@@ -272,7 +272,6 @@ namespace EasyPlanner
                 PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
                 MessageBox.Show("Traitement terminé", "Plages horaires supprimées dans la BD");
             }
-
         }
     }
 
