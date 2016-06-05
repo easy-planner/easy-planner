@@ -143,6 +143,7 @@ namespace EasyPlanner
         {
             // lastMonday is always the Monday before nextSunday.    
             int offset = d.DayOfWeek - DayOfWeek.Monday;
+            //int offset = d.DayOfWeek - DayOfWeek.Sunday;
             return d.AddDays(-offset);
         }
 

@@ -31,13 +31,7 @@
                 </MenuItem>
                 <MenuItem Header="_Administration des horaires employés">
                     <MenuItem Header="_Génère semaine de..à.." Click="mnWeeksGeneration"/>
-                </MenuItem>
-                <MenuItem Header="_TestPlinio">
-                    <MenuItem Header="_Ajoute event" Click="mnAddEvent"/>
-                    <MenuItem Header="_Efface semaine event" Click="mnClearWeekEvent"/>
-                    <MenuItem Header="_Efface tous les event" Click="mnClearEvent"/>
-                    <MenuItem Header="_Ajoute qq events à partir de 7 jours" Click="mnAddDatabase"/>
-                    <MenuItem Header="_Affiche les slotsSchedule de la semaine en cours" Click="mnSlotsShiftsInWeek"/>
+                    <MenuItem Header="_Supprime toutes les plages horaires" Click="mnWorkingShiftsRemove"/>
                 </MenuItem>
             </Menu>
             <Button Name="prevBtn" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&lt;&lt;"  VerticalAlignment="Center" Click="prevBtn_Click"></Button>
