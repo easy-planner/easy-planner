@@ -90,7 +90,6 @@ namespace EasyPlanner
             else
                 lastSunday = PlanningGeneratorTools.GetSundayAfter(d).AddDays(-7);
 
-
             //Get all the current week's scheduleSlots
             List<ScheduleSlot> scheduleSlotsWeek;
             scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
