@@ -210,5 +210,10 @@ namespace EasyPlanner
             dpLastDay.SelectedDate = ((DateTime)dpLastDay.SelectedDate).AddDays(7);
             LoadScheduleSlotFromDatabase();
         }
+
+        private void dpFirstDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dpLastDay.SelectedDate = dpFirstDay.SelectedDate;
+        }
     }
 }

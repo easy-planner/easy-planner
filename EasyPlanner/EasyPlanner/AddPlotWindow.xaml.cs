@@ -173,5 +173,10 @@ namespace EasyPlanner
             }
             return s;
         }
+
+        private void dpFirstDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dpLastDay.SelectedDate = dpFirstDay.SelectedDate;
+        }
     }
 }

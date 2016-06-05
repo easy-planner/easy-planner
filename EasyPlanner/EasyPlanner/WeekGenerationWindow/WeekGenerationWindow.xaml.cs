@@ -157,5 +157,10 @@ namespace EasyPlanner
             dpLastDay.SelectedDate = PlanningGeneratorTools.GetSundayAfter(DateTime.Today);
 
         }
+
+        private void dpFirstDay_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dpLastDay.SelectedDate = dpFirstDay.SelectedDate;
+        }
     }
 }

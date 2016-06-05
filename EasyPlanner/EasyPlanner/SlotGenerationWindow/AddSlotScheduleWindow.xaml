@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EasyPlanner"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="EasyPlanner.AddSlotScheduleWindow"
         mc:Ignorable="d"
-        Title="Ajout d'un slot" Height="282.891" Width="351.356" BorderThickness="1" Icon="/EasyPlanner;component/images/EasyplannerLogo.ico">
+        Title="Ajout d'une plage horaire" Height="282.891" Width="351.356" BorderThickness="1" Icon="/EasyPlanner;component/images/EasyplannerLogo.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

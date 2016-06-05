@@ -21,7 +21,7 @@
             <Button Name="btnPrev" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&lt;&lt;"  VerticalAlignment="Center" Click="btnPrev_Click"></Button>
             <Button Name="btnNext" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&gt;&gt;"  VerticalAlignment="Center" Click="btnNext_Click"></Button>
             <Label Content="Dates valables pour nouvelles plages.   De" Margin="10,17,0,17" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="239" Height="26"></Label>
-            <DatePicker x:Name="dpFirstDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
+            <DatePicker x:Name="dpFirstDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24" SelectedDateChanged="dpFirstDay_SelectedDateChanged"/>
             <Label Content=" à " Margin="10,17,0,17" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="22" Height="26"></Label>
             <DatePicker x:Name="dpLastDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
             <Button Name="btnSlotScheduleGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Enregistrer dans la base"  VerticalAlignment="Center" Click="btnSlotScheduleGeneration_Click" ></Button>

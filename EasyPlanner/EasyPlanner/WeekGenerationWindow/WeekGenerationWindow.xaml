@@ -24,7 +24,7 @@
             <Button Name="btnPrevWeekGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&lt;&lt;"  VerticalAlignment="Center" Click="btnPrevWeekGeneration_Click"></Button>
             <Button Name="btnNexWeekGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="&gt;&gt;"  VerticalAlignment="Center" Click="btnNextWeekGeneration_Click"></Button>
             <Label Content=" de " Margin="10,12,0,18" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Bottom" Width="28" Height="30"></Label>
-            <DatePicker x:Name="dpFirstDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
+            <DatePicker x:Name="dpFirstDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24" SelectedDateChanged="dpFirstDay_SelectedDateChanged"/>
             <Label Content=" à " Margin="10,12,0,22" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="22" Height="26"></Label>
             <DatePicker x:Name="dpLastDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
             <Button Name="btnGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Générer simulation"  VerticalAlignment="Center" Click="btnGeneration_Click"></Button>

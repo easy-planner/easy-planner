@@ -229,12 +229,15 @@ namespace EasyPlanner
         }
 
         /// <summary>
-        /// Occurs when window is loaded
+        /// Occurs when window is loaded. Initialize components
         /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // cbx populate
             cbxPeople.ItemsSource = bdModel.People.ToList();
             cbxPeople.SelectedValuePath = "idPerson";
+
+            btnAbsence.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -242,11 +245,13 @@ namespace EasyPlanner
         /// </summary>
         private void cbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            btnAbsence.Visibility = Visibility.Hidden;
             if (cbxPeople.SelectedIndex != -1)
             {
                 PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
                 List<WorkingShift> personnalWorkingShifts = bdModel.WorkingShifts.Where(ws => ws.idPerson == (int)cbxPeople.SelectedValue).ToList();
                 PlanningGeneratorTools.AddWorkingShiftScheduler(personnalWorkingShifts, mainScheduler);
+                btnAbsence.Visibility = Visibility.Visible;
             }
         }
         /// <summary>
@@ -273,6 +278,14 @@ namespace EasyPlanner
                 MessageBox.Show("Traitement terminé", "Plages horaires supprimées dans la BD");
             }
         }
-    }
 
+        private void btnAbsence_Click(object sender, RoutedEventArgs e)
+        {
+            addAbsenceWindow absWin = new addAbsenceWindow((Person)cbxPeople.SelectedItem);
+            absWin.ShowDialog();
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+            cbxPeople.SelectedIndex = -1;
+            updateEvents();
+        }
+    }
 }
