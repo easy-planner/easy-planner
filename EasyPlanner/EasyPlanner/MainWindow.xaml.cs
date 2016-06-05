@@ -264,9 +264,15 @@ namespace EasyPlanner
         /// </summary>
         private void mnWorkingShiftsRemove(object sender, RoutedEventArgs e)
         {
-            List<WorkingShift> allWorkingShifts = bdModel.WorkingShifts.ToList();
-            PlanningGeneratorTools.RemoveWorkingShiftDataBase(allWorkingShifts, bdModel);
-            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+            MessageBoxResult result = MessageBox.Show("Confirmez-vous la suppression de toutes les tranches horaires des employés?", "Suppression tranches horaires", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if(result == MessageBoxResult.Yes)
+            {
+                List<WorkingShift> allWorkingShifts = bdModel.WorkingShifts.ToList();
+                PlanningGeneratorTools.RemoveWorkingShiftDataBase(allWorkingShifts, bdModel);
+                PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+                MessageBox.Show("Traitement terminé", "Plages horaires supprimées dans la BD");
+            }
+
         }
     }
 
