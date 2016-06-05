@@ -145,79 +145,57 @@ namespace EasyPlanner
             vpw.Show();
         }
 
-        private void mnAddEvent(object s, RoutedEventArgs e)
-        {
-            List<WorkingShift> ws = new List<WorkingShift>();
-            DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+7, 5, 00, 00);
-            DateTime todayEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day+7, 7, 20, 00);
+        
 
-            for (int i = 0; i < 5; i++)
-            {
-                ws.Add(new WorkingShift
-                {
-                    description = "Psi" + i + 1,
-                    idShift = i + 1,
-                    Person = bdModel.People.First(p => p.idPerson == 5),
-                    start = todayStart.AddDays(i),
-                    end = todayEnd.AddDays(i),
-                });
-            }
+        //private void mnClearWeekEvent(object sender, RoutedEventArgs e)
+        //{
+        //    PlanningGeneratorTools.RemoveWeekWorkingShiftScheduler(mainScheduler.SelectedDate, mainScheduler);
+        //}
+        //private void mnClearEvent(object sender, RoutedEventArgs e)
+        //{
+        //    PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
+        //}
+        //private void mnAddDatabase(object sender, RoutedEventArgs e)
+        //{
+        //    List<WorkingShift> ws = new List<WorkingShift>();
+        //    DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 5, 00, 00);
+        //    DateTime todayEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 7, 20, 00);
 
-            PlanningGeneratorTools.AddWorkingShiftScheduler(ws, mainScheduler);
-            //PlanningGeneratorTools.PersistWorkingShiftDataBase(ws, bdModel);
-            //PlanningGeneratorTools.RemoveWorkingShiftDataBase(ws, bdModel);
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        ws.Add(new WorkingShift
+        //        {
+        //            description = "Psi" + i + 1,
+        //            idShift = i + 1,
+        //            Person = bdModel.People.First(p => p.idPerson == 5),
+        //            start = todayStart.AddDays(i),
+        //            end = todayEnd.AddDays(i),
+        //        });
+        //    }
 
-        }
+        //    PlanningGeneratorTools.AddWorkingShiftScheduler(ws, mainScheduler);
+        //    PlanningGeneratorTools.PersistWorkingShiftDataBase(ws, bdModel);
+        //}
 
-        private void mnClearWeekEvent(object sender, RoutedEventArgs e)
-        {
-            PlanningGeneratorTools.RemoveWeekWorkingShiftScheduler(mainScheduler.SelectedDate, mainScheduler);
-        }
-        private void mnClearEvent(object sender, RoutedEventArgs e)
-        {
-            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
-        }
-        private void mnAddDatabase(object sender, RoutedEventArgs e)
-        {
-            List<WorkingShift> ws = new List<WorkingShift>();
-            DateTime todayStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 5, 00, 00);
-            DateTime todayEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7, 7, 20, 00);
+        //private void mnSlotsShiftsInWeek(object sender, RoutedEventArgs e)
+        //{
+        //    DateTime d = mainScheduler.SelectedDate;
 
-            for (int i = 0; i < 5; i++)
-            {
-                ws.Add(new WorkingShift
-                {
-                    description = "Psi" + i + 1,
-                    idShift = i + 1,
-                    Person = bdModel.People.First(p => p.idPerson == 5),
-                    start = todayStart.AddDays(i),
-                    end = todayEnd.AddDays(i),
-                });
-            }
+        //    String s = "Semaine comprenant le " + d.ToString() + Environment.NewLine;
+        //    s += "========================================== " + Environment.NewLine + Environment.NewLine;
+        //    List<ScheduleSlot> scheduleSlotsWeek;
 
-            PlanningGeneratorTools.AddWorkingShiftScheduler(ws, mainScheduler);
-            PlanningGeneratorTools.PersistWorkingShiftDataBase(ws, bdModel);
-        }
-
-        private void mnSlotsShiftsInWeek(object sender, RoutedEventArgs e)
-        {
-            DateTime d = mainScheduler.SelectedDate;
-
-            String s = "Semaine comprenant le " + d.ToString() + Environment.NewLine;
-            s += "========================================== " + Environment.NewLine + Environment.NewLine;
-            List<ScheduleSlot> scheduleSlotsWeek;
-
-            scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
-            foreach (ScheduleSlot slot in scheduleSlotsWeek)
-            {
-                s += slot.idTimeSlot + " - " 
-                    + slot.dayOfWeek + "  de " + slot.startHour + " à " + slot.endHour
-                    + " du " + String.Format("{0:MM/dd/yyyy}", slot.firstDay) + " au " + String.Format("{0:MM/dd/yyyy}", slot.lastDay)
-                    + " , nb min : " + slot.minAttendency;
-                s += Environment.NewLine;
-            }
-            MessageBox.Show(s);
-        }
+        //    scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
+        //    foreach (ScheduleSlot slot in scheduleSlotsWeek)
+        //    {
+        //        s += slot.idTimeSlot + " - " 
+        //            + slot.dayOfWeek + "  de " + slot.startHour + " à " + slot.endHour
+        //            + " du " + String.Format("{0:MM/dd/yyyy}", slot.firstDay) + " au " + String.Format("{0:MM/dd/yyyy}", slot.lastDay)
+        //            + " , nb min : " + slot.minAttendency;
+        //        s += Environment.NewLine;
+        //    }
+        //    MessageBox.Show(s);
+        //}
 
         /// <summary>
         /// Open a new window for the workingshifts generation.
@@ -230,6 +208,7 @@ namespace EasyPlanner
             PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
             updateEvents();
         }
+
         /// <summary>
         /// Open the window to genrerate workingShifts.
         /// </summary>
@@ -241,8 +220,6 @@ namespace EasyPlanner
         /// <summary>
         /// Open the windows to manage existing ScheduleSlot
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void mnScheduleSlotsInScheduler(object sender, RoutedEventArgs e)
         {
             SlotGenerationWindow slotsGenerate = new SlotGenerationWindow(bdModel);
@@ -251,12 +228,18 @@ namespace EasyPlanner
             slotsGenerate.ShowDialog();
         }
 
+        /// <summary>
+        /// Occurs when window is loaded
+        /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cbxPeople.ItemsSource = bdModel.People.ToList();
             cbxPeople.SelectedValuePath = "idPerson";
         }
 
+        /// <summary>
+        /// Showing selected person workingShifts in the scheduler
+        /// </summary>
         private void cbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbxPeople.SelectedIndex != -1)
@@ -266,12 +249,24 @@ namespace EasyPlanner
                 PlanningGeneratorTools.AddWorkingShiftScheduler(personnalWorkingShifts, mainScheduler);
             }
         }
-
+        /// <summary>
+        /// Showing all people workingShifts in the scheduler
+        /// </summary>
         private void btnShowAllWorkingShifts_Click(object sender, RoutedEventArgs e)
         {
             cbxPeople.SelectedIndex = -1; //set to null
             PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
             PlanningGeneratorTools.AddWorkingShiftScheduler(bdModel.WorkingShifts.ToList(), mainScheduler);
+        }
+
+        /// <summary>
+        /// Remove all workingshifts from database and scheduler
+        /// </summary>
+        private void mnWorkingShiftsRemove(object sender, RoutedEventArgs e)
+        {
+            List<WorkingShift> allWorkingShifts = bdModel.WorkingShifts.ToList();
+            PlanningGeneratorTools.RemoveWorkingShiftDataBase(allWorkingShifts, bdModel);
+            PlanningGeneratorTools.ClearWorkingShiftScheduler(mainScheduler);
         }
     }
 

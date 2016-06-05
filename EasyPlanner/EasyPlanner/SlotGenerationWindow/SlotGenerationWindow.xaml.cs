@@ -82,7 +82,14 @@ namespace EasyPlanner
             PlanningGeneratorTools.ClearWorkingShiftScheduler(slotGenerationScheduler);
 
             DateTime d = slotGenerationScheduler.SelectedDate;
-            DateTime lastSunday = PlanningGeneratorTools.GetMondayBefore(d).AddDays(-1);
+            //DateTime lastSunday = PlanningGeneratorTools.GetMondayBefore(d).AddDays(-1);
+            DateTime lastSunday;
+            //d is sunday ?
+            if (d.DayOfWeek == DayOfWeek.Sunday)
+                lastSunday = d.AddDays(-7);
+            else
+                lastSunday = PlanningGeneratorTools.GetSundayAfter(d).AddDays(-7);
+
 
             //Get all the current week's scheduleSlots
             List<ScheduleSlot> scheduleSlotsWeek;
