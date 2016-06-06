@@ -34,8 +34,8 @@ namespace EasyPlanner
         {
             dpFirstDay.SelectedDate = DateTime.Today;
             dpLastDay.SelectedDate = DateTime.Today;
-            cbEndHourHour.SelectedIndex = cbEndHourHour.Items.Count-1;
-            cbEndHourMinute.SelectedIndex = cbEndHourMinute.Items.Count-1;
+            cbxEndHourHour.SelectedIndex = cbxEndHourHour.Items.Count-1;
+            cbxEndHourMinute.SelectedIndex = cbxEndHourMinute.Items.Count-1;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -44,10 +44,10 @@ namespace EasyPlanner
             {
                 
                 DateTime debut = (DateTime)dpFirstDay.SelectedDate;
-                debut=debut.Add(new TimeSpan (Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0));
+                debut=debut.Add(new TimeSpan (Int32.Parse(cbxStartHourHour.Text), Int32.Parse(cbxStartHourMinute.Text), 0));
 
                 DateTime fin = (DateTime)dpLastDay.SelectedDate;
-                fin=fin.Add(new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0));
+                fin=fin.Add(new TimeSpan(Int32.Parse(cbxEndHourHour.Text), Int32.Parse(cbxEndHourMinute.Text), 0));
 
                 List<WorkingShift> holidayWorkingShifts = bdModel.WorkingShifts.Where(ws => ws.idPerson == persSelected.idPerson && ws.start >= debut && ws.end <= fin).ToList();
                 PlanningGeneratorTools.RemoveWorkingShiftDataBase(holidayWorkingShifts, bdModel);

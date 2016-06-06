@@ -17,6 +17,7 @@ namespace WpfScheduler
 {
     /// <summary>
     /// Interaction logic for DayScheduler.xaml
+    /// Element that represent a day, in the scheduler
     /// </summary>
     public partial class DayScheduler : UserControl
     {
@@ -45,7 +46,9 @@ namespace WpfScheduler
             PaintAllDayEvents();
         }
         #endregion
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public DayScheduler()
         {
             InitializeComponent();

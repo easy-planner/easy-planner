@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
-        Title="Ajout d'un utilisateur" Height="404.625" Width="356" Icon="images/EasyplannerLogo.ico">
+        Title="Edition d'un employé" Height="404.625" Width="356" Icon="images/EasyplannerLogo.ico">
     <Grid RenderTransformOrigin="0.641,0.489">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="93*"/>
@@ -14,16 +14,16 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="button" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="61,792,0,0" VerticalAlignment="Top" Width="75"/>
         <Label x:Name="label" Content="Label" Margin="28,27,94,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_name1" Content="Nom" HorizontalAlignment="Left" Margin="28,50,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.033,0.731"/>
+        <Label x:Name="lblName1" Content="Nom" HorizontalAlignment="Left" Margin="28,50,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.033,0.731"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="52,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="2" Grid.Column="1"/>
-        <Label x:Name="lbl_firstname" Content="Prénom" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top" Width="122" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txt_firstname" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="52,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.479,-1.558" TabIndex="1"/>
-        <TextBox x:Name="txtavs" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="52,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="3"/>
-        <Label x:Name="lbl_avs" Content="Numéro AVS" Margin="28,78,157,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label x:Name="lbl_pourcentage" Content="Taux %" HorizontalAlignment="Left" Margin="28,104,0,0" VerticalAlignment="Top" Width="55"/>
-        <TextBox x:Name="txt_occupencyrate" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="52,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4"/>
-        <Button x:Name="btn_save" Content="Sauvegarder" HorizontalAlignment="Left" Margin="52,330,0,0" VerticalAlignment="Top" Width="120" Click="btn_save_Click" TabIndex="25" Grid.Column="1" IsDefault="True"/>
-        <ComboBox x:Name="cob_role" HorizontalAlignment="Left" Margin="52,141,0,0" VerticalAlignment="Top" Width="120" TabIndex="5" Grid.Column="1"/>
+        <Label x:Name="lblFirstname" Content="Prénom" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top" Width="122" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txtFirstname" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="52,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.479,-1.558" TabIndex="1"/>
+        <TextBox x:Name="txtAvs" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="52,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="3"/>
+        <Label x:Name="lblAvs" Content="Numéro AVS" Margin="28,78,157,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblPourcentage" Content="Taux %" HorizontalAlignment="Left" Margin="28,104,0,0" VerticalAlignment="Top" Width="55"/>
+        <TextBox x:Name="txtOccupencyrate" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="52,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4"/>
+        <Button x:Name="btnSave" Content="Sauvegarder" HorizontalAlignment="Left" Margin="52,330,0,0" VerticalAlignment="Top" Width="120" Click="btnSave_Click" TabIndex="25" Grid.Column="1" IsDefault="True"/>
+        <ComboBox x:Name="cbxRole" HorizontalAlignment="Left" Margin="52,141,0,0" VerticalAlignment="Top" Width="120" TabIndex="5" Grid.Column="1"/>
         <Label x:Name="lblRole" Content="Rôle" HorizontalAlignment="Left" Margin="28,137,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblPassword" Content="Mot de passe" HorizontalAlignment="Left" Margin="28,171,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="98"/>
         <TextBox x:Name="txtDescription" Grid.Column="1" HorizontalAlignment="Left" Height="96" Margin="52,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="7" AcceptsTab="True"/>

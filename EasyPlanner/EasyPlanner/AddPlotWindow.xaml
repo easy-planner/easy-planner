@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:EasyPlanner"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="EasyPlanner.AddPlotWindow"
         mc:Ignorable="d"
-        Title="Ajout d'une plage horaire" Height="382.879" Width="370.866" BorderThickness="1" Icon="images/EasyplannerLogo.ico">
+        Title="Edition plage horaire" Height="382.879" Width="370.866" BorderThickness="1" Icon="images/EasyplannerLogo.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lbl_dayOfWeek" Content="Jour de semaine" HorizontalAlignment="Left" Margin="39,28,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
-        <ComboBox x:Name="cbDayOfWeek" HorizontalAlignment="Left" Margin="175,28,0,0" VerticalAlignment="Top" Width="120" Height="22"></ComboBox>
+        <ComboBox x:Name="cbxDayOfWeek" HorizontalAlignment="Left" Margin="175,28,0,0" VerticalAlignment="Top" Width="120" Height="22"></ComboBox>
         <Label x:Name="lblStartHour" Content="Heure de début" HorizontalAlignment="Left" Margin="39,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.655,0.713" Height="26" Width="93"/>
         <Label x:Name="lblEndHour" Content="Heure de fin" HorizontalAlignment="Left" Margin="39,108,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
         <Label x:Name="lblFirstDay" Content="Premier jour" HorizontalAlignment="Left" Margin="39,164,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
         <Label x:Name="lblLastDay" Content="Dernier jour" HorizontalAlignment="Left" Margin="39,205,0,0" VerticalAlignment="Top" Height="26" Width="73"/>
-        <ComboBox x:Name="cbStartHourHour" HorizontalAlignment="Left" Margin="175,77,0,0" VerticalAlignment="Top" Width="50" Height="22">
+        <ComboBox x:Name="cbxStartHourHour" HorizontalAlignment="Left" Margin="175,77,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="startH6" Content="06" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="startH7" Content="07" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startH8" Content="08" HorizontalAlignment="Left" Width="92"/>
@@ -32,8 +32,10 @@
             <ComboBoxItem x:Name="startH16" Content="16" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startH17" Content="17" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startH18" Content="18" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="startH19" Content="19" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="startH20" Content="20" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <ComboBox x:Name="cbEndHourHour" HorizontalAlignment="Left" Margin="175,112,0,0" VerticalAlignment="Top" Width="50" Height="22">
+        <ComboBox x:Name="cbxEndHourHour" HorizontalAlignment="Left" Margin="175,112,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="endH6" Content="06" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="endH7" Content="07" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endH8" Content="08" HorizontalAlignment="Left" Width="92"/>
@@ -47,14 +49,19 @@
             <ComboBoxItem x:Name="endH16" Content="16" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endH17" Content="17" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endH18" Content="18" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="endH19" Content="19" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="endH20" Content="20" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="endH21" Content="21" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="endH22" Content="22" HorizontalAlignment="Left" Width="92"/>
+            <ComboBoxItem x:Name="endH23" Content="23" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <ComboBox x:Name="cbStartHourMinute" HorizontalAlignment="Left" Margin="245,77,0,0" VerticalAlignment="Top" Width="50" Height="22">
+        <ComboBox x:Name="cbxStartHourMinute" HorizontalAlignment="Left" Margin="245,77,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="startM00" Content="00" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="startM15" Content="15" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startM30" Content="30" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="startM45" Content="45" HorizontalAlignment="Left" Width="92"/>
         </ComboBox>
-        <ComboBox x:Name="cbEndHourMinute" HorizontalAlignment="Left" Margin="245,112,0,0" VerticalAlignment="Top" Width="50" Height="22">
+        <ComboBox x:Name="cbxEndHourMinute" HorizontalAlignment="Left" Margin="245,112,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem x:Name="endM00" Content="00" HorizontalAlignment="Left" Width="92" IsSelected="True"/>
             <ComboBoxItem x:Name="endM15" Content="15" HorizontalAlignment="Left" Width="92"/>
             <ComboBoxItem x:Name="endM30" Content="30" HorizontalAlignment="Left" Width="92"/>
@@ -64,7 +71,7 @@
         <DatePicker x:Name="dpLastDay" HorizontalAlignment="Left" Margin="175,212,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
         <Button x:Name="btnSave" Content="Sauvegarder" HorizontalAlignment="Left" Margin="175,307,0,0" VerticalAlignment="Top" Width="120" Click="btnSave_Click" Height="20" IsDefault="True"/>
         <Label x:Name="lblAttendency" Content="Quotat" HorizontalAlignment="Left" Margin="39,252,0,0" VerticalAlignment="Top" Width="83" Height="26"/>
-        <ComboBox x:Name="cbAttendency" HorizontalAlignment="Left" Margin="175,256,0,0" VerticalAlignment="Top" Width="50" Height="22">
+        <ComboBox x:Name="cbxAttendency" HorizontalAlignment="Left" Margin="175,256,0,0" VerticalAlignment="Top" Width="50" Height="22">
             <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="50" IsSelected="True"/>
             <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="50" />
             <ComboBoxItem Content="3" HorizontalAlignment="Left" Width="50" />

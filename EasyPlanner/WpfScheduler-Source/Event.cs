@@ -9,6 +9,9 @@ namespace WpfScheduler
 {
     public class Event
     {
+        /// <summary>
+        /// Id event
+        /// </summary>
         public Guid Id { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
@@ -22,6 +25,9 @@ namespace WpfScheduler
         public DateTime FirstDay { get; set; }
         public DateTime LastDay { get; set; }
 
+        /// <summary>
+        /// Event constructor
+        /// </summary>
         public Event()
         {
             Id = Guid.NewGuid();
