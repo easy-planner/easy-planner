@@ -69,8 +69,8 @@
     <Compile Include="AbsencePreference.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="addAbsenceWindow.xaml.cs">
-      <DependentUpon>addAbsenceWindow.xaml</DependentUpon>
+    <Compile Include="AddAbsenceWindow.xaml.cs">
+      <DependentUpon>AddAbsenceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddPlotWindow.xaml.cs">
       <DependentUpon>AddPlotWindow.xaml</DependentUpon>
@@ -128,7 +128,7 @@
     <Compile Include="WorkingShift.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
-    <Page Include="addAbsenceWindow.xaml">
+    <Page Include="AddAbsenceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,9 +26,9 @@ namespace EasyPlanner
         {
             InitializeComponent();
             bdModel = new bd_easyplannerEntities();
-            cob_role.ItemsSource = bdModel.Roles.ToList();
-            cob_role.DisplayMemberPath = "roleName";
-            cob_role.SelectedValuePath = "idRole";
+            cbxRole.ItemsSource = bdModel.Roles.ToList();
+            cbxRole.DisplayMemberPath = "roleName";
+            cbxRole.SelectedValuePath = "idRole";
             modify = false;
         }
 
@@ -40,20 +40,20 @@ namespace EasyPlanner
             modify = true;
             this.current = current;
             txtName.Text = current.name;
-            txt_firstname.Text = current.firstName;
-            txtavs.Text = current.numberAVS;
-            txt_occupencyrate.Text = current.occupancyRate.ToString();
+            txtFirstname.Text = current.firstName;
+            txtFirstname.Text = current.numberAVS;
+            txtOccupencyrate.Text = current.occupancyRate.ToString();
             txtDescription.Text = current.description;
-            cob_role.ItemsSource = bdModel.Roles.ToList();
-            cob_role.DisplayMemberPath = "roleName";
-            cob_role.SelectedValuePath = "idRole";
-            cob_role.SelectedValue = current.idRole;
-            btn_save.Content = "Modifier";
+            cbxRole.ItemsSource = bdModel.Roles.ToList();
+            cbxRole.DisplayMemberPath = "roleName";
+            cbxRole.SelectedValuePath = "idRole";
+            cbxRole.SelectedValue = current.idRole;
+            btnSave.Content = "Modifier";
             
         }
 
 
-        private void btn_save_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!modify)
             {
@@ -64,11 +64,11 @@ namespace EasyPlanner
                 current.password = pwdPassword.Password;
             }
            
-            current.firstName = txt_firstname.Text;
+            current.firstName = txtFirstname.Text;
             current.name = txtName.Text;
-            current.numberAVS = txtavs.Text;
-            current.occupancyRate = float.Parse(txt_occupencyrate.Text);
-            current.idRole = (int)cob_role.SelectedValue;
+            current.numberAVS = txtFirstname.Text;
+            current.occupancyRate = float.Parse(txtOccupencyrate.Text);
+            current.idRole = (int)cbxRole.SelectedValue;
             
             current.description = txtDescription.Text;
             if (!modify)

@@ -45,9 +45,9 @@ namespace EasyPlanner
             modified = false;
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
-                cbDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
+                cbxDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
             }
-            cbDayOfWeek.SelectedIndex = 1;
+            cbxDayOfWeek.SelectedIndex = 1;
             dpFirstDay.SelectedDate = DateTime.Today;
             dpLastDay.SelectedDate = DateTime.Today;
         }
@@ -64,14 +64,14 @@ namespace EasyPlanner
             InitializeComponent();
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
-                cbDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
+                cbxDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
             }
-            cbDayOfWeek.SelectedIndex = 1;
-            cbStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
-            cbStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
-            cbEndHourHour.Text = formatHoursMinutes(ss.endHour.Hours);
-            cbEndHourMinute.Text = formatHoursMinutes(ss.endHour.Minutes);
-            cbAttendency.Text = ss.minAttendency.ToString();
+            cbxDayOfWeek.SelectedIndex = 1;
+            cbxStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
+            cbxStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
+            cbxEndHourHour.Text = formatHoursMinutes(ss.endHour.Hours);
+            cbxEndHourMinute.Text = formatHoursMinutes(ss.endHour.Minutes);
+            cbxAttendency.Text = ss.minAttendency.ToString();
 
             if (ss.firstDay.ToString() != "")
             {
@@ -101,10 +101,10 @@ namespace EasyPlanner
         {
             if (isDateChecked() && areDatesCorrect())
             {
-                current.dayOfWeek = cbDayOfWeek.SelectedIndex;
-                current.startHour = new TimeSpan(Int32.Parse(cbStartHourHour.Text), Int32.Parse(cbStartHourMinute.Text), 0);
-                current.endHour = new TimeSpan(Int32.Parse(cbEndHourHour.Text), Int32.Parse(cbEndHourMinute.Text), 0);
-                current.minAttendency = Int32.Parse(cbAttendency.Text);
+                current.dayOfWeek = cbxDayOfWeek.SelectedIndex;
+                current.startHour = new TimeSpan(Int32.Parse(cbxStartHourHour.Text), Int32.Parse(cbxStartHourMinute.Text), 0);
+                current.endHour = new TimeSpan(Int32.Parse(cbxEndHourHour.Text), Int32.Parse(cbxEndHourMinute.Text), 0);
+                current.minAttendency = Int32.Parse(cbxAttendency.Text);
                 current.firstDay = (DateTime)dpFirstDay.SelectedDate;
                 current.lastDay = (DateTime)dpLastDay.SelectedDate;
 
