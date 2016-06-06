@@ -37,7 +37,9 @@ namespace EasyPlanner
         {
             InitializeComponent();
             this.bdModel = bd;
-            bdModel = new bd_easyplannerEntities();
+
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
+            
             NextPrevButtonVisibity = false;
             this.btnNext.Visibility = Visibility.Hidden;
             this.btnPrev.Visibility = Visibility.Hidden;

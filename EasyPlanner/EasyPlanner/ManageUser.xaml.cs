@@ -26,7 +26,7 @@ namespace EasyPlanner
         public ManageUser()
         {
             InitializeComponent();
-            bdModel = new bd_easyplannerEntities();
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
             dgPeople.ItemsSource = bdModel.People.ToList();
         }
 

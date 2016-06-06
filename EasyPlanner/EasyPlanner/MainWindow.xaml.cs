@@ -27,7 +27,7 @@ namespace EasyPlanner
         public MainWindow()
         {
             InitializeComponent();
-            bdModel = new bd_easyplannerEntities();
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
 
             mainScheduler.OnEventDoubleClick += MainScheduler_OnEventDoubleClick;
             mainScheduler.OnScheduleDoubleClick += MainScheduler_OnScheduleDoubleClick;

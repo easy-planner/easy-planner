@@ -10,14 +10,36 @@
 namespace EasyPlanner
 {
     using System;
+    using System.Data.Common;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
     public partial class bd_easyplannerEntities : DbContext
     {
-        public bd_easyplannerEntities()
-            : base("name=bd_easyplannerEntities")
+        public bd_easyplannerEntities(string connexionStr)
+            : base(connexionStr)
         {
+        }
+
+        public static bd_easyplannerEntities OpenWithFallback()
+        {
+            bd_easyplannerEntities bd = new bd_easyplannerEntities("name=bd_easyplannerEntities");
+            try
+            {
+                bd.Database.Connection.Open();
+            }
+            catch
+            {
+                bd = new bd_easyplannerEntities("name=bd_easyplannerEntitiesFB");
+                try
+                {
+                    bd.Database.Connection.Open();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            return bd;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

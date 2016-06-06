@@ -27,7 +27,7 @@ namespace EasyPlanner
     /// </summary>
     public partial class AddPlotWindow : Window
     {
-        bd_easyplannerEntities bd;
+        bd_easyplannerEntities bdModel;
         private ScheduleSlot current;
         private Boolean modified;
 
@@ -41,7 +41,7 @@ namespace EasyPlanner
         {
             InitializeComponent();
             current = new ScheduleSlot();
-            bd = new bd_easyplannerEntities();
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
             modified = false;
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
@@ -84,7 +84,7 @@ namespace EasyPlanner
                 dpLastDay.SelectedDate = dt;
             }
 
-            this.bd = bd;
+            this.bdModel = bd;
             this.current = ss;
             current.idTimeSlot = ss.idTimeSlot;
             modified = true;
@@ -110,10 +110,10 @@ namespace EasyPlanner
 
                 if (!modified)
                 {
-                    bd.ScheduleSlots.Add(current);
+                    bdModel.ScheduleSlots.Add(current);
                 }
 
-                bd.SaveChanges();
+                bdModel.SaveChanges();
                 this.Close();
             } else
             {

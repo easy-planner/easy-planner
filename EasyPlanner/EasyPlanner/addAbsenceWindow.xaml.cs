@@ -25,7 +25,7 @@ namespace EasyPlanner
         {
             InitializeComponent();
             persSelected = p;
-            bdModel = new bd_easyplannerEntities();
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
 
             lblPerson.Content += p.idPerson + " " + p.firstName + " " + p.name;
         }

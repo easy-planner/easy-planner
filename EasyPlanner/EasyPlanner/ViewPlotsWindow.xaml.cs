@@ -26,11 +26,11 @@ namespace EasyPlanner
     /// </summary>
     public partial class ViewPlotsWindow : Window
     {
-        bd_easyplannerEntities bd = new bd_easyplannerEntities();
+        bd_easyplannerEntities bdModel = bd_easyplannerEntities.OpenWithFallback();
         public ViewPlotsWindow()
         {
             InitializeComponent();
-            dg.ItemsSource = bd.ScheduleSlots.ToList();
+            dg.ItemsSource = bdModel.ScheduleSlots.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,25 +42,25 @@ namespace EasyPlanner
                 if ((dg.SelectedItem as ScheduleSlot).idTimeSlot != 0)
                 {
                     int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
-                    ScheduleSlot sl = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
-                    bd.ScheduleSlots.Remove(sl);
-                    bd.SaveChanges();
-                    dg.ItemsSource = bd.ScheduleSlots.ToList();
+                    ScheduleSlot sl = (from r in bdModel.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
+                    bdModel.ScheduleSlots.Remove(sl);
+                    bdModel.SaveChanges();
+                    dg.ItemsSource = bdModel.ScheduleSlots.ToList();
                 }
 
 
             } else if (b.Name == "btnUpdate")
             {
                 int tsId = (dg.SelectedItem as ScheduleSlot).idTimeSlot;
-                ScheduleSlot s1 = (from r in bd.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
+                ScheduleSlot s1 = (from r in bdModel.ScheduleSlots where r.idTimeSlot == tsId select r).SingleOrDefault();
                 ScheduleSlot tmp = s1;
                 
-                AddPlotWindow apw = new AddPlotWindow(tmp, bd);
+                AddPlotWindow apw = new AddPlotWindow(tmp, bdModel);
                 //bd.ScheduleSlots.Remove(s1);
                 apw.ShowDialog();
                 
-                bd.SaveChanges();
-                dg.ItemsSource = bd.ScheduleSlots.ToList();
+                bdModel.SaveChanges();
+                dg.ItemsSource = bdModel.ScheduleSlots.ToList();
 
                 
             } 
