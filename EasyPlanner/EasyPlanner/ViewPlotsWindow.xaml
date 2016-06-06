@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:EasyPlanner"
         mc:Ignorable="d"
         Title="Vue des slots" Height="507" Width="1030.35" Icon="images/EasyplannerLogo.ico">
-    <Grid>
-        <DataGrid x:Name="dg" CanUserDeleteRows="False"  HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="352" Width="722" AutoGenerateColumns="False">
+    <Grid Margin="0,0,17,0">
+        <DataGrid x:Name="dg" HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto"  AutoGenerateColumns="False"  CanUserAddRows="False" ColumnWidth="*" Grid.ColumnSpan="2" Margin="10,0,-19.667,0" RenderTransformOrigin="0.754,1.712">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="dgrId" Binding="{Binding idTimeSlot}"  Header="Id"  IsReadOnly="True" />
                 <DataGridTextColumn x:Name="dgrDayOfWeek"  Binding="{Binding dayOfWeek}" Header="Jour de semaine" IsReadOnly="True" />
