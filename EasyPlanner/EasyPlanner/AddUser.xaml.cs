@@ -41,7 +41,7 @@ namespace EasyPlanner
             this.current = current;
             txtName.Text = current.name;
             txtFirstname.Text = current.firstName;
-            txtFirstname.Text = current.numberAVS;
+            txtAvs.Text = current.numberAVS;
             txtOccupencyrate.Text = current.occupancyRate.ToString();
             txtDescription.Text = current.description;
             cbxRole.ItemsSource = bdModel.Roles.ToList();
@@ -66,7 +66,7 @@ namespace EasyPlanner
            
             current.firstName = txtFirstname.Text;
             current.name = txtName.Text;
-            current.numberAVS = txtFirstname.Text;
+            current.numberAVS = txtAvs.Text;
             current.occupancyRate = float.Parse(txtOccupencyrate.Text);
             current.idRole = (int)cbxRole.SelectedValue;
             

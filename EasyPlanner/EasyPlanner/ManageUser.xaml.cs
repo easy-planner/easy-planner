@@ -35,18 +35,20 @@ namespace EasyPlanner
         {
             AddUser auw = new AddUser((Person)((DataGrid)sender).SelectedItem, bdModel);
             auw.ShowDialog();
-
+            dgPeople.ItemsSource = bdModel.People.ToList();
         }
 
         private void btnModify_Click(object sender, RoutedEventArgs e)
         {
             AddUser auw = new AddUser((Person)(dgPeople.SelectedItem), bdModel);
             auw.ShowDialog();
+            dgPeople.ItemsSource = bdModel.People.ToList();
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             bdModel.People.Remove((Person)dgPeople.SelectedItem);
             bdModel.SaveChanges();
+            dgPeople.ItemsSource = bdModel.People.ToList();
 
         }
     }
