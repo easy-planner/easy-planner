@@ -66,7 +66,7 @@ namespace EasyPlanner
             {
                 cbxDayOfWeek.Items.Add(DateTimeFormatInfo.CurrentInfo.GetDayName(day));
             }
-            cbxDayOfWeek.SelectedIndex = 1;
+            cbxDayOfWeek.SelectedIndex = ss.dayOfWeek;
             cbxStartHourHour.Text = formatHoursMinutes(ss.startHour.Hours);
             cbxStartHourMinute.Text = formatHoursMinutes(ss.startHour.Minutes);
             cbxEndHourHour.Text = formatHoursMinutes(ss.endHour.Hours);

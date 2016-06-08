@@ -118,7 +118,19 @@ namespace EasyPlanner
                 List<WorkingShift> shifts = null;
                 while (firstDay < lastDay)
                 {
-                    shifts = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(firstDay, bdModel), firstDay).GetShifts();
+                    Tuple<List<WorkingShift>,List<string>> resultat = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(firstDay, bdModel), firstDay).GetShifts();
+                    shifts = resultat.Item1;
+                    string message = "";
+                    int count = 0;
+                    foreach(string problem in resultat.Item2)
+                    {
+                        count++;
+                        message += (count + ". " + problem + "\n");
+                    }
+                    if(count > 0)
+                    {
+                        MessageBox.Show(message);
+                    }
                     PlanningGeneratorTools.AddWorkingShiftScheduler(shifts, weekGenerationScheduler);
                     totalWorkingShifts.AddRange(shifts);
                     firstDay=firstDay.AddDays(7); //go to the next week
