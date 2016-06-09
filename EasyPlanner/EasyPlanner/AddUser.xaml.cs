@@ -25,7 +25,7 @@ namespace EasyPlanner
         public AddUser()
         {
             InitializeComponent();
-            bdModel = new bd_easyplannerEntities();
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
             cbxRole.ItemsSource = bdModel.Roles.ToList();
             cbxRole.DisplayMemberPath = "roleName";
             cbxRole.SelectedValuePath = "idRole";

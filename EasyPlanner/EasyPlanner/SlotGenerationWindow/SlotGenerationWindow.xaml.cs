@@ -37,7 +37,7 @@ namespace EasyPlanner
         {
             InitializeComponent();
             this.bdModel = bd;
-            bdModel = new bd_easyplannerEntities();
+            bdModel = bd_easyplannerEntities.OpenWithFallback();
             NextPrevButtonVisibity = false;
             this.btnNext.Visibility = Visibility.Hidden;
             this.btnPrev.Visibility = Visibility.Hidden;
@@ -68,13 +68,8 @@ namespace EasyPlanner
             else
                 lastSunday = PlanningGeneratorTools.GetSundayAfter(d).AddDays(-7);
 
-            List<ScheduleSlot> scheduleSlotsWeek;
-
             //Get all the current week's scheduleSlots
-            scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
-
-
-            scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
+            List<ScheduleSlot> scheduleSlotsWeek = PlanningGeneratorTools.GetWeekScheduleSlots(d, bdModel);
 
             //Add the week's slot in the scheduler
             foreach (ScheduleSlot ss in scheduleSlotsWeek)
