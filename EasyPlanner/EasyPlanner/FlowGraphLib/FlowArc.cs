@@ -31,5 +31,10 @@ namespace EasyPlanner
             this.End = end;
             this.Capacity = capacity;
         }
+
+        public override string ToString()
+        {
+            return "(" + this.Start.ToString() + ") -> (" + this.End.ToString() + ")";
+        }
     }
 }
