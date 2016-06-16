@@ -82,6 +82,9 @@
     <Compile Include="FlowGraphLib\FlowGraph.cs" />
     <Compile Include="FlowGraphLib\FlowNode.cs" />
     <Compile Include="FlowGraphLib\FlowPath.cs" />
+    <Compile Include="LoginFormWindows.xaml.cs">
+      <DependentUpon>LoginFormWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ManageUser.xaml.cs">
       <DependentUpon>ManageUser.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginFormWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
