@@ -54,7 +54,7 @@ namespace EasyPlanner
                 for(int i=0; i < lsUser.Count; i++)
                 {
                     current = lsUser.ElementAt(i);
-                    if(current.name.ToLower() == txtUserName.Text.ToLower() || current.password == pwPassword.Password)
+                    if(current.name.ToLower() == txtUserName.Text.ToLower() && current.password == pwPassword.Password)
                     {
                         user = current;
                     }
