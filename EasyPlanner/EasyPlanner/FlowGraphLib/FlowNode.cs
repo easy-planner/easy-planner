@@ -35,6 +35,11 @@ namespace EasyPlanner
             this.Name = name;
             this.Type = FlowNodeType.Virtual;
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 
     /// <summary>
@@ -51,7 +56,7 @@ namespace EasyPlanner
         /// adds a person's reference in addition of base constructor
         /// </summary>
         /// <param name="person">The Person</param>
-        public PersonFlowNode(Person person) : base(person.ToString())
+        public PersonFlowNode(Person person) : base(person.firstName + " " + person.name)
         {
             this.Person = person;
             this.Type = FlowNodeType.Person;
@@ -70,7 +75,7 @@ namespace EasyPlanner
         /// adds a slot's reference in addition of base constuctor
         /// </summary>
         /// <param name="slot">The Slot</param>
-        public SlotFlowNode(ScheduleSlot slot) : base(slot.ToString())
+        public SlotFlowNode(ScheduleSlot slot) : base(slot.dayOfWeek + " : " + slot.startHour.ToString(@"hh\:mm") + "-" + slot.endHour.ToString(@"hh\:mm"))
         {
             this.Slot= slot;
             this.Type = FlowNodeType.Slot;

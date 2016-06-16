@@ -16,12 +16,23 @@ namespace EasyPlanner
     class FlowPath
     {
         public double AdditionalCapacity { get; set; }
-        public List<FlowArc> Arcs { get; set; }
+        public Dictionary<FlowArc,int> Arcs { get; set; }
 
         public FlowPath()
         {
             this.AdditionalCapacity = 0.0;
-            this.Arcs = new List<FlowArc>();
+            this.Arcs = new Dictionary<FlowArc, int>();
+        }
+
+        public override string ToString()
+        {
+            string message = "";
+            foreach(KeyValuePair<FlowArc,int> arcEntry in this.Arcs.Reverse())
+            {
+                message += ((arcEntry.Value == -1 ? "<neg>" : "") + arcEntry.Key.ToString() + "\n");
+            }
+            message += ("Add : " + this.AdditionalCapacity);
+            return message;
         }
     }
 }

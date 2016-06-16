@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EasyPlanner
 {
@@ -73,7 +74,7 @@ namespace EasyPlanner
             this.Flows = new Dictionary<FlowArc, double>();
             foreach (FlowArc arc in this.Arcs)
             {
-                this.Flows[arc] = 0;
+                this.Flows[arc] = 0.0;
             }
         }
 
@@ -89,6 +90,8 @@ namespace EasyPlanner
             // if path exists then augmentation of flows
             while (null != path)
             {
+                /* Only for debugging
+                MessageBox.Show(path.ToString()); */
                 this.Augment(path);
                 // search new path
                 path = this.PathFinder(this.Source, this.Target, new List<FlowNode>());
@@ -118,8 +121,9 @@ namespace EasyPlanner
             // searching for ongoing path
             foreach (FlowArc arc in this.Arcs)
             {
-                double delta = 0;
+                double delta = 0.0;
                 FlowPath path = null;
+                int sens = 0;
 
                 // is it a positive path ?
                 if (arc.Start == source && this.Flows[arc] < arc.Capacity && !visited.Contains(arc.End))
@@ -127,6 +131,7 @@ namespace EasyPlanner
                     // recursive call on pathfinder
                     path = this.PathFinder(arc.End, target, new List<FlowNode>(visited));
                     delta = arc.Capacity - this.Flows[arc];
+                    sens = 1;
                 }
                 // is it a negative path ?
                 if (arc.End == source && this.Flows[arc] > 0 && !visited.Contains(arc.Start))
@@ -134,13 +139,14 @@ namespace EasyPlanner
                     // recursive call on pathfinder
                     path = this.PathFinder(arc.Start, target, new List<FlowNode>(visited));
                     delta = this.Flows[arc];
+                    sens = -1;
                 }
 
                 // if an ongoing path has been found then
                 if (null != path)
                 {
                     // updating arcs and capacitiy
-                    path.Arcs.Add(arc);
+                    path.Arcs.Add(arc,sens);
                     path.AdditionalCapacity = Math.Min(delta, path.AdditionalCapacity);
                     return path;
                 }
@@ -155,9 +161,9 @@ namespace EasyPlanner
         /// <param name="path">The augmentation path found</param>
         private void Augment(FlowPath path)
         {
-            foreach (FlowArc arc in path.Arcs)
+            foreach (KeyValuePair<FlowArc, int> arcEntry in path.Arcs)
             {
-                this.Flows[arc] += path.AdditionalCapacity;
+                this.Flows[arcEntry.Key] += path.AdditionalCapacity * arcEntry.Value;
             }
         }
 
@@ -260,11 +266,22 @@ namespace EasyPlanner
                 while (j < shifts.Count)
                 {
                     WorkingShift shiftJ = shifts[j];
-                    if (shiftJ.Person == shiftI.Person &&
-                        shiftJ.start == shiftI.end)
+                    if(shiftJ.Person == shiftI.Person)
                     {
-                        shiftI.end = shiftJ.end;
-                        shifts.Remove(shiftJ);
+                        if(shiftJ.start == shiftI.end)
+                        {
+                            shiftI.end = shiftJ.end;
+                            shifts.Remove(shiftJ);
+                        }
+                        else if(shiftJ.end == shiftI.start)
+                        {
+                            shiftI.start = shiftJ.start;
+                            shifts.Remove(shiftJ);
+                        }
+                        else
+                        {
+                            j++;
+                        }
                     }
                     else
                     {
