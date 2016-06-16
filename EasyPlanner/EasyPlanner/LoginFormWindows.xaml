@@ -1,0 +1,23 @@
+﻿<Window x:Class="EasyPlanner.LoginFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyPlanner"
+        mc:Ignorable="d"
+        Title="Connexion" Height="257.05" Width="302.985">
+    <Grid Margin="0,0,2.667,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="156*"/>
+            <ColumnDefinition Width="91*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="23" Margin="120,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <PasswordBox x:Name="pwPassword" HorizontalAlignment="Left" Margin="120,102,0,0" VerticalAlignment="Top" Height="28" Width="120" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblLogin" Content="Nom d'utilisateur" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.745,3.824"/>
+        <Label x:Name="lblPassword" Content="Mot de passe" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnQuit" Content="Annuler" HorizontalAlignment="Left" Margin="36,170,0,0" VerticalAlignment="Top" Width="75" Click="btnQuit_Click"/>
+        <Button x:Name="btnConnect" Content="Connecter" HorizontalAlignment="Left" Margin="165,170,0,0" VerticalAlignment="Top" Width="75" Click="btnConnect_Click" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>
