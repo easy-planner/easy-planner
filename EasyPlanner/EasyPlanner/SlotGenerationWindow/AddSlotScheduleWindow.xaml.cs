@@ -167,5 +167,27 @@ namespace EasyPlanner
             }
             return areCorrect;
         }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            current.DayOfWeek = cbDayOfWeekSlot.SelectedIndex;
+            current.MinAttendency = Int32.Parse(cbAttendencySlot.Text);
+            current.FirstDay = (DateTime)dpFirstDay.SelectedDate;
+            current.LastDay = (DateTime)dpLastDay.SelectedDate;
+
+            current.Start = current.Start.AddHours(Int32.Parse(cbStartHourHourSlot.Text));
+            current.Start = current.Start.AddMinutes(Int32.Parse(cbStartHourMinuteSlot.Text));
+            current.End = current.End.AddHours(Int32.Parse(cbEndHourHourSlot.Text));
+            current.End = current.End.AddMinutes(Int32.Parse(cbEndHourMinuteSlot.Text));
+
+            scheduler.DeleteEvent(idBckCurrent);
+            current.Color = new SolidColorBrush(Colors.Red);
+            //MessageBox.Show("La plage horaire selectionnée à bien été supprimée.");
+            current.Subject = "Date départ : " + current.FirstDay.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
+                    "Date de fin : " + current.LastDay.ToString("MM/dd/yyyy") + Environment.NewLine + Environment.NewLine +
+                    "Mininum : " + current.MinAttendency.ToString();
+            scheduler.AddEvent(current);
+            this.Close();
+        }
     }
 }

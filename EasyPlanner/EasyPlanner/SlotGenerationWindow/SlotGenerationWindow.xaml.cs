@@ -132,6 +132,10 @@ namespace EasyPlanner
                         startHour = new TimeSpan(ev.Start.Hour, ev.Start.Minute, 0),
                         endHour = new TimeSpan(ev.End.Hour, ev.End.Minute, 0),
                     });
+                } else if (ev.Color.ToString() == Colors.Red.ToString()) //if the color is red, then remove it from the database
+                {
+                    ScheduleSlot ss = bdModel.ScheduleSlots.Single(s => s.idTimeSlot == ev.IdShift);
+                    bdModel.ScheduleSlots.Remove(ss);
                 }
                 else //otherwise update it
                 {
