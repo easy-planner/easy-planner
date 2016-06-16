@@ -247,14 +247,18 @@ namespace EasyPlanner
 
         private void userAccess()
         {
-            this.btnShowAllWorkingShifts.IsEnabled = false;
-            btnAbsence.IsEnabled = false;
             this.cbxPeople.SelectedValue = user;
-            cbxPeople.IsEnabled = false;
-            //((MenuItem)this.FindName("_Utilisateurs")).IsEnabled = false;
-            miUsers.IsEnabled = false;
-            miScheduleAbscence.IsEnabled = false;
-            miScheduleSlots.IsEnabled = false;
+            if (!isAdmin)
+            {
+                this.btnShowAllWorkingShifts.IsEnabled = false;
+                btnAbsence.IsEnabled = false;
+                cbxPeople.IsEnabled = false;
+                //((MenuItem)this.FindName("_Utilisateurs")).IsEnabled = false;
+                miUsers.IsEnabled = false;
+                miScheduleAbscence.IsEnabled = false;
+                miScheduleSlots.IsEnabled = false;
+            }
+
         }
     }
 }
