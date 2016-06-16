@@ -13,6 +13,7 @@ namespace EasyPlanner
     using System.Data.Common;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+
     public partial class bd_easyplannerEntities : DbContext
     {
         public bd_easyplannerEntities(string connexionStr)
@@ -36,7 +37,7 @@ namespace EasyPlanner
                 }
                 catch
                 {
-                    return null;
+                    throw new NoDataBaseUsableException();
                 }
             }
             return bd;
