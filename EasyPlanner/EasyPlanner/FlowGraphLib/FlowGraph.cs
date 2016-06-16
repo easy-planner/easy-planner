@@ -65,6 +65,121 @@ namespace EasyPlanner
                 this.Arcs.Add(new FlowArc(node, this.Target, delta * slot.minAttendency));
             }
         }
+        public FlowGraph(List<Person> persons, List<ScheduleSlot> slots, DateTime start, List<AbsenceDemand> absences)
+        {
+            this.Source = new FlowNode("Source");
+            this.Target = new FlowNode("Target");
+            this.Nodes = new List<FlowNode>();
+            this.Arcs = new List<FlowArc>();
+            this.WeekStart = start;
+
+            // creating person's nodes
+            foreach (Person person in persons)
+            {
+                PersonFlowNode node = new PersonFlowNode(person);
+                this.Nodes.Add(node);
+                // link node to source
+                this.Arcs.Add(new FlowArc(this.Source, node, Math.Round(person.occupancyRate * 40 / 100)));
+            }
+
+            // creating slots' nodes
+            foreach (ScheduleSlot slot in this.SplitSlots(new List<ScheduleSlot>(slots), absences))
+            {
+                SlotFlowNode node = new SlotFlowNode(slot);
+                double delta = slot.endHour.Subtract(slot.startHour).TotalHours;
+                this.Nodes.Add(node);
+                // linking node to person's nodes
+                foreach (FlowNode nody in this.Nodes)
+                {
+                    if (nody.Type == FlowNodeType.Person)
+                    {
+                        bool present = true;
+                        // check absences
+                        for (int i = 0; i < absences.Count && present; i++)
+                        {
+                            AbsenceDemand absence = absences[i];
+                            // if the absent is the concerned node then
+                            if(absence.Person == ((PersonFlowNode)nody).Person)
+                            {
+                                // gettting the 'real' day of the slot
+                                DateTime theDay = WeekStart.AddDays(((int)slot.dayOfWeek - (int)WeekStart.DayOfWeek) % 7);
+                                DateTime theStart = theDay.Add(slot.startHour);
+                                DateTime theEnd = theDay.Add(slot.endHour);
+                                // check for overlap
+                                if(theStart >= absence.start && theEnd <= absence.end)
+                                {
+                                    present = false;
+                                }
+                            }
+
+                        }
+                        // only if no overlap has been found is the node linked
+                        if (present)
+                        {
+                            this.Arcs.Add(new FlowArc(nody, node, delta));
+                        }
+                    }
+                }
+                // linking node to target
+                this.Arcs.Add(new FlowArc(node, this.Target, delta * slot.minAttendency));
+            }
+        }
+
+        /// <summary>
+        /// Spliting slots before simulation
+        /// !!! slot list will be modified so 
+        /// use a copy if you don't want that
+        /// </summary>
+        /// <param name="slots"></param>
+        /// <param name="absences"></param>
+        /// <returns></returns>
+        private List<ScheduleSlot> SplitSlots(List<ScheduleSlot> slots, List<AbsenceDemand> absences)
+        {
+            int count = slots.Count;
+            // parsing slots
+            for(int i = 0; i < count; i++)
+            {
+                ScheduleSlot slot = slots[i];
+                // parsing absences
+                for(int j = 0; j < slots.Count; j ++)
+                {
+                    AbsenceDemand absence = absences[j];
+                    // check on absence's end
+                    if ((int)absence.end.DayOfWeek == slot.dayOfWeek)
+                    {
+                        if (absence.end.TimeOfDay > slot.startHour && absence.end.TimeOfDay < slot.endHour)
+                        {
+                            ScheduleSlot newSlot = new ScheduleSlot();
+                            newSlot.dayOfWeek = slot.dayOfWeek;
+                            newSlot.firstDay = slot.firstDay;
+                            newSlot.lastDay = slot.lastDay;
+                            newSlot.minAttendency = slot.minAttendency;
+                            newSlot.startHour = absence.end.TimeOfDay;
+                            newSlot.endHour = slot.endHour;
+                            slots.Add(newSlot);
+                            slot.endHour = absence.end.TimeOfDay;
+                        }
+                    }
+                    // check on absence's start
+                    if ((int)absence.start.DayOfWeek == slot.dayOfWeek)
+                    {
+                        if (absence.start.TimeOfDay > slot.startHour && absence.start.TimeOfDay < slot.endHour)
+                        {
+                            ScheduleSlot newSlot = new ScheduleSlot();
+                            newSlot.dayOfWeek = slot.dayOfWeek;
+                            newSlot.firstDay = slot.firstDay;
+                            newSlot.lastDay = slot.lastDay;
+                            newSlot.minAttendency = slot.minAttendency;
+                            newSlot.startHour = absence.start.TimeOfDay;
+                            newSlot.endHour = slot.endHour;
+                            slots.Add(newSlot);
+                            slot.endHour = absence.start.TimeOfDay;
+                        }
+                    }
+                }
+            }
+            return slots;
+        }
 
         /// <summary>
         /// Simple reseter of arc's capacities before calculating
