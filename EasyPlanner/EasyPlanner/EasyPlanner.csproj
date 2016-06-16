@@ -82,6 +82,7 @@
     <Compile Include="FlowGraphLib\FlowGraph.cs" />
     <Compile Include="FlowGraphLib\FlowNode.cs" />
     <Compile Include="FlowGraphLib\FlowPath.cs" />
+    <Compile Include="FlowGraphLib\IFlowGraph.cs" />
     <Compile Include="ManageUser.xaml.cs">
       <DependentUpon>ManageUser.xaml</DependentUpon>
     </Compile>

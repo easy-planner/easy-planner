@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace EasyPlanner
 {
-    public class FlowGraph
+    public class FlowGraph: IFlowGraph
     {
         public FlowNode Source { get; set; }
         public FlowNode Target { get; set; }
