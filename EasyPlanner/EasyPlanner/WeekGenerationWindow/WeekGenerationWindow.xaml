@@ -29,6 +29,7 @@
             <DatePicker x:Name="dpLastDay" Margin="10,21,0,21" HorizontalAlignment="Left" DockPanel.Dock="Left"  VerticalAlignment="Center" Width="120" Height="24"/>
             <Button Name="btnGeneration" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Générer simulation"  VerticalAlignment="Center" Click="btnGeneration_Click"></Button>
             <Button Name="btnSaveInDB" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Enregistrer dans la BD"  VerticalAlignment="Center" Click="btnSaveInDB_Click"></Button>
+            <Button Name="btnGenerationAbs" Margin="10 0 0 0" HorizontalAlignment="Left" DockPanel.Dock="Left" Content="Générer avec abs"  VerticalAlignment="Center" Click="btnGenerationAbs_Click"></Button>
         </DockPanel>
         <my:Scheduler
             Grid.Row="1"
