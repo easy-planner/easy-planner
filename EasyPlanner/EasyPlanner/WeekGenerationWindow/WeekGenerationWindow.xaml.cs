@@ -118,22 +118,67 @@ namespace EasyPlanner
                 List<WorkingShift> shifts = null;
                 while (firstDay < lastDay)
                 {
-                    Tuple<List<WorkingShift>,List<string>> resultat = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(firstDay, bdModel), firstDay).GetShifts();
+                    Tuple<List<WorkingShift>, List<string>> resultat = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(firstDay, bdModel), firstDay).GetShifts();
                     shifts = resultat.Item1;
                     string message = "";
                     int count = 0;
-                    foreach(string problem in resultat.Item2)
+                    foreach (string problem in resultat.Item2)
                     {
                         count++;
                         message += (count + ". " + problem + "\n");
                     }
-                    if(count > 0)
+                    if (count > 0)
                     {
                         MessageBox.Show(message);
                     }
                     PlanningGeneratorTools.AddWorkingShiftScheduler(shifts, weekGenerationScheduler);
                     totalWorkingShifts.AddRange(shifts);
-                    firstDay=firstDay.AddDays(7); //go to the next week
+                    firstDay = firstDay.AddDays(7); //go to the next week
+                }
+                MessageBox.Show("Traitement terminé", "Génération des plages horaires");
+                btnSaveInDB.IsEnabled = true; //Enable the database recording button
+            }
+            else
+            {
+                MessageBox.Show("Veuillez remplir les champs \"Premier jour\" et \"Dernier Jour\"" +
+                    "\n" + " et vérifier que le premier jour soit avant ou égal au dernier jour");
+            }
+        }
+        private void btnGenerationAbs_Click(object sender, RoutedEventArgs e)
+        {
+            if (isDateChecked() && areDatesCorrect())
+            {
+                MessageBox.Show("Le traitement peux prendre du temps merci de patienter jusqu'au message indicant la fin du traitement.", "Génération des plages horaires");
+                // Disabled simulation's components
+                dpFirstDay.IsEnabled = false;
+                dpLastDay.IsEnabled = false;
+                btnGeneration.IsEnabled = false;
+                PlanningGeneratorTools.ClearWorkingShiftScheduler(weekGenerationScheduler);
+
+                //gets first and last day
+                DateTime firstDay = (DateTime)dpFirstDay.SelectedDate;
+                DateTime lastDay = (DateTime)dpLastDay.SelectedDate;
+
+                List<DateTime> generationDates = new List<DateTime>();
+                List<WorkingShift> shifts = null;
+                while (firstDay < lastDay)
+                {
+                    Tuple<List<WorkingShift>, List<string>> resultat = new FlowGraph(bdModel.People.ToList(), PlanningGeneratorTools.GetWeekScheduleSlots(firstDay, bdModel), firstDay, bdModel.AbsenceDemands.ToList()).GetShifts();
+                    shifts = resultat.Item1;
+                    string message = "";
+                    int count = 0;
+                    foreach (string problem in resultat.Item2)
+                    {
+                        count++;
+                        message += (count + ". " + problem + "\n");
+                    }
+                    if (count > 0)
+                    {
+                        MessageBox.Show(message);
+                    }
+                    PlanningGeneratorTools.AddWorkingShiftScheduler(shifts, weekGenerationScheduler);
+                    totalWorkingShifts.AddRange(shifts);
+                    firstDay = firstDay.AddDays(7); //go to the next week
                 }
                 MessageBox.Show("Traitement terminé", "Génération des plages horaires");
                 btnSaveInDB.IsEnabled = true; //Enable the database recording button

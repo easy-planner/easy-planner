@@ -141,7 +141,7 @@ namespace EasyPlanner
             {
                 ScheduleSlot slot = slots[i];
                 // parsing absences
-                for(int j = 0; j < slots.Count; j ++)
+                for(int j = 0; j < absences.Count; j ++)
                 {
                     AbsenceDemand absence = absences[j];
                     // check on absence's end
