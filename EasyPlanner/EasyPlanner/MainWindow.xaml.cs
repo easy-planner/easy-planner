@@ -24,13 +24,19 @@ namespace EasyPlanner
     public partial class MainWindow : Window
     {
         bd_easyplannerEntities bdModel;
-        public MainWindow()
+        Boolean isAdmin;
+        Person user;
+        public MainWindow(Person user, Boolean isAdmin)
         {
             InitializeComponent();
             bdModel = bd_easyplannerEntities.OpenWithFallback();
-
+            this.isAdmin = isAdmin;
+            this.user = user;
             mainScheduler.OnEventDoubleClick += MainScheduler_OnEventDoubleClick;
             mainScheduler.OnScheduleDoubleClick += MainScheduler_OnScheduleDoubleClick;
+
+            //sécurise l'interface
+            userAccess();
         }
         void MainScheduler_OnScheduleDoubleClick(object sender, DateTime e)
         {
@@ -237,6 +243,22 @@ namespace EasyPlanner
             absPrefSlot.LoadScheduleSlotFromDatabase();
             absPrefSlot.NextPrevButtonVisibity = false;
             absPrefSlot.ShowDialog();
+        }
+
+        private void userAccess()
+        {
+            this.cbxPeople.SelectedValue = user;
+            if (!isAdmin)
+            {
+                this.btnShowAllWorkingShifts.IsEnabled = false;
+                btnAbsence.IsEnabled = false;
+                cbxPeople.IsEnabled = false;
+                //((MenuItem)this.FindName("_Utilisateurs")).IsEnabled = false;
+                miUsers.IsEnabled = false;
+                miScheduleAbscence.IsEnabled = false;
+                miScheduleSlots.IsEnabled = false;
+            }
+
         }
     }
 }
