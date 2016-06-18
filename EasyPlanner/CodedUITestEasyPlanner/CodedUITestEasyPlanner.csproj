@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4B843220-4218-4139-AF6B-D866E24CF2CD}</ProjectGuid>
+    <ProjectGuid>{B2B32CBE-BC40-494E-BA3C-9B11640CD352}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodedUITestEasyPlanner</RootNamespace>
@@ -53,8 +53,17 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodedUITest1.cs" />
+    <Compile Include="CodedUIFormLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIMap.cs">
+      <DependentUpon>UIMap.uitest</DependentUpon>
+    </Compile>
+    <Compile Include="UIMap.Designer.cs">
+      <DependentUpon>UIMap.uitest</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UIMap.uitest" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

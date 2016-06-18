@@ -16,9 +16,9 @@ namespace CodedUITestEasyPlanner
     /// Summary description for CodedUITest1
     /// </summary>
     [CodedUITest]
-    public class CodedUITest1
+    public class CodedUIFormLogin
     {
-        public CodedUITest1()
+        public CodedUIFormLogin()
         {
         }
 
@@ -26,6 +26,12 @@ namespace CodedUITestEasyPlanner
         public void CodedUITestMethod1()
         {
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+            this.UIMap.SelectLoginForm();
+            this.UIMap.EnterValidLogin();
+            this.UIMap.EnterValidPassword();
+            this.UIMap.ClickOnConnectButton();
+            //this.UIMap.SelectResult();
+            this.UIMap.AssertCheckLoginForm();
         }
 
         #region Additional test attributes
@@ -64,5 +70,20 @@ namespace CodedUITestEasyPlanner
             }
         }
         private TestContext testContextInstance;
+
+        public UIMap UIMap
+        {
+            get
+            {
+                if ((this.map == null))
+                {
+                    this.map = new UIMap();
+                }
+
+                return this.map;
+            }
+        }
+
+        private UIMap map;
     }
 }

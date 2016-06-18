@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfScheduler", "WpfSchedule
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestEasyPlanner", "UnitTestEasyPlanner\UnitTestEasyPlanner.csproj", "{1824EB15-4626-48EC-B29F-20C586E62024}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodedUITestEasyPlanner", "CodedUITestEasyPlanner\CodedUITestEasyPlanner.csproj", "{B2B32CBE-BC40-494E-BA3C-9B11640CD352}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1824EB15-4626-48EC-B29F-20C586E62024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1824EB15-4626-48EC-B29F-20C586E62024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1824EB15-4626-48EC-B29F-20C586E62024}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B32CBE-BC40-494E-BA3C-9B11640CD352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B32CBE-BC40-494E-BA3C-9B11640CD352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B32CBE-BC40-494E-BA3C-9B11640CD352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B32CBE-BC40-494E-BA3C-9B11640CD352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

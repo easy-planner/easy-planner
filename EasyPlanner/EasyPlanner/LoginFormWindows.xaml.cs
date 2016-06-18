@@ -43,6 +43,7 @@ namespace EasyPlanner
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
+            this.tbxLoginResult.Text = "Nom ou mot de passe incorrect";
             if (txtUserName.Text==""|| pwPassword.Password == "")
             {
                 //erreur champ vide
@@ -68,11 +69,12 @@ namespace EasyPlanner
                         isAdmin = true;
                     }
                     new MainWindow(user, isAdmin).Show();
-                    this.Close();
+                    this.tbxLoginResult.Text = "Login OK";
+                    //this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Nom ou mot de passe incorrect", "Erreur de connexion");
+                    //MessageBox.Show("Nom ou mot de passe incorrect", "Erreur de connexion");
                 }
             }
         }
