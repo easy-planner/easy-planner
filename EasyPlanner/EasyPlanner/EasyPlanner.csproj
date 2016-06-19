@@ -208,6 +208,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelEF.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="FlowGraphLib\FlowClassDiagram.cd" />
     <None Include="ModelEF.edmx.diagram">
       <DependentUpon>ModelEF.edmx</DependentUpon>
     </None>
