@@ -70,7 +70,7 @@ namespace EasyPlanner
                     }
                     new MainWindow(user, isAdmin).Show();
                     this.tbxLoginResult.Text = "Login OK";
-                    //this.Close();
+                    this.Close();
                 }
                 else
                 {
