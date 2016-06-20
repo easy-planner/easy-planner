@@ -28,12 +28,19 @@ namespace EasyPlanner
         public LoginFormWindow()
         {
             InitializeComponent();
-            bdModel = bd_easyplannerEntities.OpenWithFallback();
-            if (bdModel == null)
+            try {
+                bdModel = bd_easyplannerEntities.OpenWithFallback();
+            }
+            catch (NoDataBaseUsableException e)
+            {
+                MessageBox.Show(e.Message);
+                this.Close();
+            }
+/*            if (bdModel == null)
             {
                 //afficher erreur
                 this.Close();
-            }
+            }*/
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)

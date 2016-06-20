@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -104,6 +105,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelEF.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NoDataBaseUsableException.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>ModelEF.tt</DependentUpon>
     </Compile>
@@ -207,6 +209,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelEF.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="FlowGraphLib\FlowClassDiagram.cd" />
     <None Include="ModelEF.edmx.diagram">
       <DependentUpon>ModelEF.edmx</DependentUpon>
     </None>
