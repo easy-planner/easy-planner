@@ -1,4 +1,11 @@
-﻿using System;
+﻿/////////////////////////////////////////////////////////////
+// Class responsible : Alexandre
+// Last update : 20.06.2016
+// Sprint 8
+// Story(ies) : Create finalized documentation
+/////////////////////////////////////////////////////////////
+
+using System;
 using System.Configuration;
 using System.Runtime.Serialization;
 
